@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html lang="he">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOVIES.pop</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="premium-modal.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOVIES.pop</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <!-- 🔥 HEADER -->
 <header>
   <div class="logoWrap">
-    <img src="assets/logo.png" class="logo" alt="MOVIES.pop">
+    <img src="assets/logo.png" class="logo" alt="MOVIES.pop logo">
     <h1 class="brand">MOVIES.pop</h1>
-  </div>
-
-  <div class="tabs">
-    <button onclick="showTab('movies')" id="tabMovies" class="tab active">🎬 סרטים</button>
-    <button onclick="showTab('series')" id="tabSeries" class="tab">📺 סדרות</button>
   </div>
 </header>
 
-<!-- 📦 תוכן -->
-<div id="main"></div>
+<!-- 📦 GRID סרטים -->
+<main id="movieGrid" class="grid"></main>
 
-<!-- 🎬 נגן -->
+<!-- 🎬 MODAL נגן -->
 <div id="playerModal" class="modal hidden">
   <div class="playerBox">
     <iframe id="player" allowfullscreen></iframe>
@@ -34,64 +27,7 @@
   </div>
 </div>
 
-<!-- 💎 מודאל פרימיום -->
-<div id="premiumModal" class="premium-modal hidden">
-  <div class="premium-modal-content">
-    <h2>ההצטרפות שלך לפרימיום!</h2>
-    <p>ברוך הבא לעולם של אולטרה פרימיום! כל התוכן בהישג ידך. הירשם עכשיו וקבל 30 יום בחינם כחלק מתוכנית נסיון זמנית. השירות בקרוב בתשלום!</p>
-    
-    <form id="premiumForm">
-      <label for="premiumUsername">שם משתמש</label>
-      <input type="text" id="premiumUsername" name="username" placeholder="הזן שם משתמש" required>
-
-      <label for="premiumEmail">אימייל</label>
-      <input type="email" id="premiumEmail" name="email" placeholder="הזן אימייל" required>
-
-      <label for="premiumPassword">סיסמה</label>
-      <input type="password" id="premiumPassword" name="password" placeholder="הזן סיסמה" required>
-
-      <button type="submit">הצטרף לפרימיום</button>
-    </form>
-
-    <button id="closePremiumBtn" class="close-btn">✖ סגור</button>
-  </div>
-</div>
-
-<!-- 📜 מודאל מדיניות פרטיות -->
-<div id="privacyModal" class="modal hidden">
-  <div class="subscribe-card">
-    <h2>📜 מדיניות פרטיות</h2>
-    <p>
-      אנו ב‑MOVIES.pop מכבדים את פרטיות המשתמשים והמידע שנמסר בפנייתכם. 
-      אנו אוספים רק שם משתמש ודוא"ל לשם שימוש בשירותים שלנו בלבד, 
-      ולא נעביר מידע זה לצד שלישי ללא הסכמתכם. המידע ישמש רק לעדכונים ושיפור השירות.
-    </p>
-    <button onclick="closePrivacy()">סגור</button>
-  </div>
-</div>
-
-<!-- ⏳ טעינה -->
-<div id="loadingScreen" class="loading hidden">
-  <div class="loaderContent">
-    <img src="assets/logo.png" class="loadingLogo" alt="MOVIES.pop">
-    <h2>MOVIES.pop</h2>
-    <p>טוען...</p>
-  </div>
-</div>
-
-<!-- ❤️ אזור אישי -->
-<div id="profilePanel" class="profile hidden">
-  <h2 id="welcomeUser"></h2>
-  <h3>❤️ אהובים</h3>
-  <div id="favorites"></div>
-  <h3>👁️ צפיתי לאחרונה</h3>
-  <div id="recent"></div>
-  <h3>📬 נשמח לשמוע</h3>
-  <a href="mailto:movies0pop0@gmail.com">שלח מייל</a>
-</div>
-
-<!-- קוד הסגירה, הרשמה ופתיחת המודל -->
-<script src="premium-modal.js"></script>
-
+<script src="data.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

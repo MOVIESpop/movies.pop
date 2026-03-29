@@ -14,64 +14,109 @@ body {
   justify-content:center;
   align-items:center;
   color:white;
+  overflow:hidden;
 }
 
+/* ☁️ עננים */
+.cloud {
+  position:absolute;
+  background:white;
+  border-radius:50%;
+  opacity:0.15;
+  filter:blur(20px);
+  animation: moveClouds 60s linear infinite;
+}
+
+.cloud:nth-child(1){
+  width:300px;height:150px;top:10%;left:-200px;
+}
+.cloud:nth-child(2){
+  width:200px;height:100px;top:70%;left:-150px;
+  animation-duration:80s;
+}
+
+@keyframes moveClouds {
+  from { transform: translateX(0); }
+  to { transform: translateX(150vw); }
+}
+
+/* 📦 קופסה */
 .box {
   width:90%;
-  max-width:900px;
+  max-width:950px;
   background:rgba(255,255,255,0.1);
-  border-radius:20px;
+  border-radius:25px;
   padding:30px;
   display:flex;
   gap:30px;
+  backdrop-filter: blur(15px);
+  z-index:2;
 }
 
-.left {
-  flex:1;
+/* 🎉 שם האתר POP */
+.logo {
+  font-size:32px;
+  font-weight:bold;
+  margin-bottom:20px;
+  animation: pop 1s ease;
 }
 
-.right {
-  flex:1;
+@keyframes pop {
+  0% { transform: scale(0.5); opacity:0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity:1; }
 }
+
+.left { flex:1; }
+.right { flex:1; }
 
 input {
   width:100%;
-  padding:10px;
+  padding:12px;
   margin-bottom:10px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
 }
 
 button {
   width:100%;
-  padding:12px;
+  padding:14px;
   border:none;
-  border-radius:12px;
-  background:#ff4fd8;
+  border-radius:14px;
+  background:linear-gradient(135deg,#ff4fd8,#6a00ff);
   color:white;
   font-size:16px;
   cursor:pointer;
+  transition:0.3s;
 }
 
 button:hover {
-  opacity:0.8;
+  transform:scale(1.05);
 }
 
 .success {
   display:none;
   text-align:center;
+  font-size:18px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ☁️ עננים -->
+<div class="cloud"></div>
+<div class="cloud"></div>
+
 <div class="box">
 
   <div class="left">
-    <h1>🔥 30 יום חינם</h1>
-    <p>צפייה בכל הסרטים והסדרות ללא הגבלה</p>
-    <p>✔ כל התוכן פתוח</p>
+    <div class="logo">🌟 MOVIES.pop </div>
+
+    <h2>30 יום חינם</h2>
+    <p>כל הסרטים והסדרות פתוחים לצפייה</p>
+
+    <p>✔ גישה מלאה</p>
     <p>✔ אזור אישי</p>
     <p>✔ ללא התחייבות</p>
   </div>
@@ -87,11 +132,11 @@ button:hover {
         <input type="checkbox" id="ok"> מאשר תנאים
       </label>
 
-      <button onclick="go()">התחל</button>
+      <button onclick="go()">התחל עכשיו</button>
     </div>
 
     <div id="done" class="success">
-      🎉 נרשמת! יש לך 30 יום חינם
+      🎉 ברוך הבא! יש לך 30 יום חינם 🔥
     </div>
 
   </div>

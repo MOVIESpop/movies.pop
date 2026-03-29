@@ -1,26 +1,8 @@
-// 🎫 סגירת מודאל פרימיום
-function closePremium() {
-  document.getElementById("premium-modal").classList.add("hidden");
-}
+// =====================
+// 🎟️ מערכת מודאל פרימיום אולטרה
+// =====================
 
-// 🚀 הרשמה פרימיום
-function registerPremium(event) {
-  event.preventDefault(); // למנוע ריענון דף
-  const u = document.getElementById("username").value;
-  const e = document.getElementById("email").value;
-  const p = document.getElementById("password").value;
-
-  if (!u || !e || !p) {
-    alert("הכנס שם משתמש, אימייל וסיסמה תקינים");
-    return;
-  }
-
-  localStorage.setItem("premiumUser", u); // שמירה ב-localStorage
-  document.getElementById("premium-modal").classList.add("hidden");
-  alert("ברוך הבא לפרימיום 🎉 " + u);
-}
-
-// הצגת המודל אם המשתמש לא רשום
+// 🎬 הפעלה של מודל פרימיום
 function showPremiumModal() {
   const isPremium = localStorage.getItem("premiumUser");
   if (!isPremium) {
@@ -28,8 +10,61 @@ function showPremiumModal() {
   }
 }
 
-// קריאה להציג את המודל בתחילת טעינת הדף
-showPremiumModal();
+// ❌ סגירת מודאל פרימיום
+function closePremium() {
+  document.getElementById("premium-modal").classList.add("hidden");
+}
 
-// הגדרת טופס ההרשמה
-document.getElementById("premium-signup-form").addEventListener("submit", registerPremium);
+// 🎉 טיפול בהרשמה פרימיום
+function registerPremium(event) {
+  event.preventDefault();
+
+  const u = document.getElementById("username").value.trim();
+  const e = document.getElementById("email").value.trim();
+  const p = document.getElementById("password").value.trim();
+
+  if (!u || !e || !p) {
+    alert("❗ יש למלא שם משתמש, אימייל וסיסמה כדי להצטרף לפרימיום");
+    return;
+  }
+
+  // שמירה ב‑localStorage
+  localStorage.setItem("premiumUser", u);
+  localStorage.setItem("premiumEmail", e);
+  localStorage.setItem("premiumPass", p);
+
+  alert("🎉 ברוך הבא לפרימיום, " + u + "!");
+  closePremium();
+}
+
+// 📅 אופציה ל‑30 יום
+function setPremiumExpiry() {
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 30);
+  localStorage.setItem("premiumExpiry", expiryDate.toString());
+}
+
+// 💎 בדיקת סטטוס פרימיום
+function isPremiumActive() {
+  const user = localStorage.getItem("premiumUser");
+  const expiry = localStorage.getItem("premiumExpiry");
+
+  if (!user || !expiry) return false;
+  const exp = new Date(expiry);
+
+  return exp > new Date();
+}
+
+// 🔌 חיבור אירוע טופס
+const premiumForm = document.getElementById("premium-signup-form");
+if (premiumForm) {
+  premiumForm.addEventListener("submit", (e) => {
+    registerPremium(e);
+    setPremiumExpiry(); // שמור תוקף 30 יום
+  });
+}
+
+// 🚀 הצגת המודל בתחילת טעינת הדף
+document.addEventListener("DOMContentLoaded", () => {
+  showPremiumModal();
+});

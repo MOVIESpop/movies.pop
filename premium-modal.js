@@ -1,44 +1,66 @@
 // אלמנטים
 const premiumModal = document.getElementById("premiumModal");
-const closeBtn = document.getElementById("closePremiumBtn");
-const premiumForm = document.getElementById("premiumForm");
+const premiumForm = document.getElementById("premium-signup-form");
 
-// פתח מודאל
+// 🔓 פתיחת מודאל
 function openPremium() {
-  premiumModal.classList.add("show");
+  premiumModal.classList.remove("hidden");
 }
 
-// סגור מודאל
+// ❌ סגירת מודאל (רק בכפתור או הרשמה)
 function closePremium() {
-  premiumModal.classList.remove("show");
+  premiumModal.classList.add("hidden");
 }
 
-// סגירה רק בלחיצה על כפתור סגור או לאחר הצטרפות
-closeBtn.addEventListener("click", closePremium);
+// 🚀 הרשמה פרימיום
+function registerPremium(event) {
+  event.preventDefault();
 
-// הרשמה פרימיום
-premiumForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const username = document.getElementById("premiumUsername").value;
-  const email = document.getElementById("premiumEmail").value;
-  const password = document.getElementById("premiumPassword").value;
+  const u = document.getElementById("username").value.trim();
+  const e = document.getElementById("email").value.trim();
+  const p = document.getElementById("password").value.trim();
 
-  if (!username || !email || !password) {
-    return alert("נא למלא את כל השדות");
+  if (!u || !e || !p) {
+    alert("❗ יש למלא שם משתמש, אימייל וסיסמה");
+    return;
   }
 
-  // שומר את הנתונים ב-localStorage
-  localStorage.setItem("premiumUser", JSON.stringify({ username, email }));
+  // שמירה
+  localStorage.setItem("premiumUser", u);
+  localStorage.setItem("premiumEmail", e);
+  localStorage.setItem("premiumPass", p);
 
-  // סוגר את המודל לאחר הצטרפות
+  setPremiumExpiry();
+
+  alert("🎉 ברוך הבא לפרימיום, " + u + "!");
   closePremium();
-  
-  // מראה הודעת ברוך הבא
-  alert(`🎉 ברוך הבא לפרימיום, ${username}!`);
-});
+}
 
-// בדיקה אם המשתמש כבר פרימיום
-window.addEventListener("load", () => {
+// 📅 30 יום (מוכן לעתיד)
+function setPremiumExpiry() {
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 30);
+  localStorage.setItem("premiumExpiry", expiryDate.toString());
+}
+
+// 💎 בדיקה אם פרימיום פעיל
+function isPremiumActive() {
   const user = localStorage.getItem("premiumUser");
-  if (!user) openPremium();
+  const expiry = localStorage.getItem("premiumExpiry");
+
+  if (!user || !expiry) return false;
+
+  return new Date(expiry) > new Date();
+}
+
+// 🔌 חיבור לטופס
+if (premiumForm) {
+  premiumForm.addEventListener("submit", registerPremium);
+}
+
+// 🚨 פתיחה אוטומטית אם לא פרימיום
+window.addEventListener("load", () => {
+  if (!isPremiumActive()) {
+    openPremium();
+  }
 });

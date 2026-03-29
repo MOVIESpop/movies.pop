@@ -1,88 +1,71 @@
-/* מודאל פרימיום SUS-style */
-.premium-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
+const premiumModal = document.getElementById("premiumModal");
+const closeBtn = document.getElementById("closePremiumBtn");
+const premiumForm = document.getElementById("premiumForm");
+
+// פתח מודאל
+function openPremium() {
+  premiumModal.classList.remove("hidden");
 }
 
-.premium-modal.show {
-  opacity: 1;
-  pointer-events: all;
+// סגור מודאל
+function closePremium() {
+  premiumModal.classList.add("hidden");
 }
 
-.premium-modal-content {
-  background: linear-gradient(145deg, #000000, #1a1a1a);
-  border: 3px solid gold;
-  border-radius: 15px;
-  padding: 30px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  color: gold;
-  box-shadow: 0 0 25px gold;
-  transform: scale(0.7);
-  animation: modalIn 0.4s forwards;
+// הרשמה פרימיום
+premiumForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const u = document.getElementById("premiumUsername").value.trim();
+  const e = document.getElementById("premiumEmail").value.trim();
+  const p = document.getElementById("premiumPassword").value.trim();
+
+  if (!u || !e || !p) {
+    alert("❗ יש למלא שם משתמש, אימייל וסיסמה כדי להצטרף לפרימיום");
+    return;
+  }
+
+  // שמירה ב-localStorage
+  localStorage.setItem("premiumUser", u);
+  localStorage.setItem("premiumEmail", e);
+  localStorage.setItem("premiumPass", p);
+  
+  // הגדרת תוקף מנוי
+  setPremiumExpiry();
+
+  alert("🎉 ברוך הבא לפרימיום, " + u + "!");
+  closePremium();
+});
+
+// 📅 30 יום
+function setPremiumExpiry() {
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 30);
+  localStorage.setItem("premiumExpiry", expiryDate.toString());
 }
 
-@keyframes modalIn {
-  to { transform: scale(1); }
+// 💎 בדיקת סטטוס פרימיום
+function isPremiumActive() {
+  const user = localStorage.getItem("premiumUser");
+  const expiry = localStorage.getItem("premiumExpiry");
+
+  if (!user || !expiry) return false;
+  const exp = new Date(expiry);
+
+  return exp > new Date();
 }
 
-.premium-modal-content h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
+// הצגת המודל בתחילת טעינת הדף
+window.addEventListener("load", () => {
+  if (!isPremiumActive()) {
+    openPremium();
+  }
+});
 
-.premium-modal-content p {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
+// אירוע סגירה של המודל אם תלחץ מחוץ אליו
+premiumModal.addEventListener("click", (e) => {
+  if (e.target === premiumModal) closePremium();
+});
 
-.premium-modal-content input {
-  width: 90%;
-  margin: 8px 0;
-  padding: 10px;
-  border: 1px solid gold;
-  border-radius: 8px;
-  background: #000;
-  color: gold;
-  font-size: 14px;
-}
-
-.premium-modal-content button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border: 2px solid gold;
-  background: black;
-  color: gold;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.premium-modal-content button:hover {
-  background: gold;
-  color: black;
-}
-
-.closeBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: none;
-  background: transparent;
-  font-size: 20px;
-  color: gold;
-  cursor: pointer;
-}
+// כפתור סגירה
+closeBtn.addEventListener("click", closePremium);

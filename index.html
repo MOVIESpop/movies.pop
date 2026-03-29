@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="he">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOVIES.pop</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="premium-modal.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVIES.pop</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="premium-modal.css">
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 <!-- 🔥 HEADER -->
 <header>
   <div class="logoWrap">
-    <img src="assets/logo.png" class="logo">
+    <img src="assets/logo.png" class="logo" alt="MOVIES.pop">
     <h1 class="brand">MOVIES.pop</h1>
   </div>
 
@@ -38,7 +38,7 @@
 <div id="premiumModal" class="premium-modal hidden">
   <div class="premium-modal-content">
     <h2>ההצטרפות שלך לפרימיום!</h2>
-    <p>ברוך הבא לעולם של אולטרה פרימיום! כל התוכן בהישג ידך. הירשם עכשיו וקבל 30 יום בחינם כחלק מתוכנית נסיון זמנית השירות בקרוב בתשלום!</p>
+    <p>ברוך הבא לעולם של אולטרה פרימיום! כל התוכן בהישג ידך. הירשם עכשיו וקבל 30 יום בחינם כחלק מתוכנית נסיון זמנית. השירות בקרוב בתשלום!</p>
     
     <form id="premiumForm">
       <label for="premiumUsername">שם משתמש</label>
@@ -73,22 +73,19 @@
 <!-- ⏳ טעינה -->
 <div id="loadingScreen" class="loading hidden">
   <div class="loaderContent">
-    <img src="assets/logo.png" class="loadingLogo">
+    <img src="assets/logo.png" class="loadingLogo" alt="MOVIES.pop">
     <h2>MOVIES.pop</h2>
     <p>טוען...</p>
   </div>
 </div>
 
-<!-- ❤️ אזור אישי (מוכן להמשך) -->
+<!-- ❤️ אזור אישי -->
 <div id="profilePanel" class="profile hidden">
   <h2 id="welcomeUser"></h2>
-
   <h3>❤️ אהובים</h3>
   <div id="favorites"></div>
-
   <h3>👁️ צפיתי לאחרונה</h3>
   <div id="recent"></div>
-
   <h3>📬 נשמח לשמוע</h3>
   <a href="mailto:movies0pop0@gmail.com">שלח מייל</a>
 </div>

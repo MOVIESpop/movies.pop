@@ -75,6 +75,7 @@ const series = [
           { title: "פרק 20", id: "1Kq-J5fBAM9KlYnf1_nK0zA-VL3kZkrj6", image: "assets/tsf1.png" }
         ]
       },
+
       {
         name: "עונה 2",
         image: "assets/tsf2.png",

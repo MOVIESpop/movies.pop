@@ -90,7 +90,7 @@ function play(id) {
     `https://drive.google.com/file/d/${id}/preview`;
 }
 
-function closePlayer() {
+function closeModal() {
   document.getElementById("playerModal").classList.add("hidden");
 }
 

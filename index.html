@@ -29,37 +29,30 @@
 <div id="playerModal" class="modal hidden">
   <div class="playerBox">
     <iframe id="player" allowfullscreen></iframe>
-    <button class="closeBtn" onclick="closeModal()">✖</button>  </div>
-</div>
-
-<!-- 💎 הרשמה -->
-<div id="subscribeModal" class="subscribe-modal hidden">
-  <div class="subscribe-card">
-
-    <div class="diamond"></div>
-
-    <h2>💎 מנוי פרימיום חינם</h2>
-    <p>כדי לצפות בתוכן יש להירשם</p>
-
-    <input id="username" placeholder="שם משתמש">
-    <input id="email" placeholder="אימייל">
-
-    <label class="check">
-      <input type="checkbox" id="agree">
-      מאשר קבלת עדכונים
-    </label>
-
-    <button onclick="register()">הצטרף עכשיו</button>
+    <button class="closeBtn" onclick="closeModal()">✖</button>
   </div>
 </div>
 
-<!-- 📜 פרטיות -->
-<div id="privacyModal" class="subscribe-modal hidden">
+<!-- 💎 מודאל הרשמה פרימיום -->
+<div id="premiumModal" class="modal hidden">
+  <div class="subscribe-card gold">
+    <h2>✨ מנוי פרימיום חינם</h2>
+    <p>הזן שם משתמש וסיסמה כדי להצטרף לפרימיום</p>
+    <input id="premiumUsername" placeholder="שם משתמש">
+    <input id="premiumPassword" type="password" placeholder="סיסמה">
+    <button onclick="registerPremium()">הצטרף עכשיו</button>
+    <button class="closeBtn" onclick="closePremium()">✖</button>
+  </div>
+</div>
+
+<!-- 📜 מודאל מדיניות פרטיות -->
+<div id="privacyModal" class="modal hidden">
   <div class="subscribe-card">
-    <h2>📜 תנאי פרטיות</h2>
+    <h2>📜 מדיניות פרטיות</h2>
     <p>
-      האתר MOVIES.pop שומר על פרטיות המשתמשים.  
-      האימייל ישמש לעדכונים בלבד ולא יועבר לצד שלישי.
+      אנו ב‑MOVIES.pop מכבדים את פרטיות המשתמשים והמידע שנמסר בפנייתכם. 
+      אנו אוספים רק שם משתמש ודוא"ל לשם שימוש בשירותים שלנו בלבד, 
+      ולא נעביר מידע זה לצד שלישי ללא הסכמתכם. המידע ישמש רק לעדכונים ושיפור השירות.
     </p>
     <button onclick="closePrivacy()">סגור</button>
   </div>
@@ -91,6 +84,46 @@
 <!-- 🔗 קבצים -->
 <script src="data.js"></script>
 <script src="app.js"></script>
+
+<!-- מערכת הסגירה ומדיניות פרטיות -->
+<script>
+// 🎫 סגירת מודאל פרימיום
+function closePremium() {
+  document.getElementById("premiumModal").classList.add("hidden");
+}
+
+// 🚀 הרשמה פרימיום
+function registerPremium() {
+  const u = document.getElementById("premiumUsername").value;
+  const p = document.getElementById("premiumPassword").value;
+
+  if (!u || !p) {
+    alert("הכנס שם משתמש וסיסמה תקינים");
+    return;
+  }
+
+  localStorage.setItem("premiumUser", u);
+  closePremium();
+  alert("ברוך הבא לפרימיום 🎉 " + u);
+}
+
+// 📜 בדיקה והצגת פרטיות רק פעם אחת
+function showPrivacyIfNeeded() {
+  const shown = localStorage.getItem("privacySeen");
+  if (!shown) {
+    document.getElementById("privacyModal").classList.remove("hidden");
+  }
+}
+
+// סגירת פרטיות עם שמירה שלא יציג שוב
+function closePrivacy() {
+  document.getElementById("privacyModal").classList.add("hidden");
+  localStorage.setItem("privacySeen", "true");
+}
+
+// קריאה לבדיקה בתחילת טעינת הדף
+showPrivacyIfNeeded();
+</script>
 
 </body>
 </html>

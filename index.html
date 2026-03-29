@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOVIES.pop - פרימיום 30 יום חינם</title>
+<style>
+/* ------------------- BODY ------------------- */
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#6a00ff,#ff4fd8);
+  overflow-x:hidden;
+  color:white;
+}
+
+/* ------------------- HEADER ------------------- */
+header {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 10px 20px;
+  position: relative;
+  z-index:2;
+}
+
+.logoWrap {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logoWrap img {
+  width:50px;
+  height:50px;
+  animation: pop 1s ease;
+}
+
+.brand {
+  font-size:24px;
+  font-weight:bold;
+}
+
+.premiumGift {
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:12px;
+  background: linear-gradient(135deg,#ff4fd8,#6a00ff);
+  color:white;
+  font-weight:bold;
+  text-decoration:none;
+  transition: transform 0.3s;
+  position:relative;
+  cursor:pointer;
+}
+
+.premiumGift:hover {
+  transform: scale(1.1);
+}
+
+/* ------------------- CLOUDS ------------------- */
+.cloud {
+  position:absolute;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  filter: blur(25px);
+  animation: moveClouds linear infinite;
+  z-index:0;
+}
+
+.cloud1 { width: 400px; height:200px; top: 10%; left:-400px; animation-duration:120s; }
+.cloud2 { width: 250px; height:120px; top:50%; left:-300px; animation-duration:90s; }
+.cloud3 { width: 350px; height:180px; top:30%; left:-350px; animation-duration:150s; }
+
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(200vw); }
+}
+
+/* ------------------- GRID סרטים ------------------- */
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+  gap:20px;
+  padding:20px;
+  position: relative;
+  z-index:1;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius:15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor:pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+}
+
+.card img {
+  width:100%;
+  display:block;
+  border-radius:15px;
+  transition: transform 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card h3 {
+  text-align:center;
+  margin:5px 0;
+  font-size:16px;
+}
+
+/* ------------------- MODAL ------------------- */
+.modal {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  transition: opacity 0.3s;
+}
+
+.modal.hidden { display:none; }
+
+.playerBox {
+  position:relative;
+  width:80%;
+  max-width:800px;
+  height:450px;
+}
+
+.playerBox iframe {
+  width:100%;
+  height:100%;
+  border:none;
+  border-radius:15px;
+}
+
+.closeBtn {
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+
+/* ------------------- PARTICLES ------------------- */
+.buttonWrap {
+  position: relative;
+  display:inline-block;
+}
+
+.particles {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 150px;
+  height: 50px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: rise 1s linear infinite;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(0.5); opacity:1; }
+  100% { transform: translateY(-50px) scale(0); opacity:0; }
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity:0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity:1; }
+}
+
+/* ------------------- PRO FORM ------------------- */
+#proForm {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background: rgba(0,0,0,0.9);
+  z-index:10000;
+}
+
+#proBox {
+  background: rgba(255,255,255,0.1);
+  padding:30px;
+  border-radius:25px;
+  display:flex;
+  flex-direction: column;
+  gap:15px;
+  backdrop-filter: blur(15px);
+  width:90%;
+  max-width:450px;
+  color:white;
+}
+
+#proBox input, #proBox button {
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+}
+
+#proBox button {
+  background: linear-gradient(135deg,#ff4fd8,#6a00ff);
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.success {
+  display:none;
+  text-align:center;
+  color:#f1c40f;
+  font-size:18px;
+}
+</style>
+</head>
+<body>
+
+<!-- ☁️ עננים -->
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+
+<!-- 🔥 HEADER -->
+<header>
+  <div class="logoWrap">
+    <img src="https://via.placeholder.com/50" alt="MOVIES.pop logo">
+    <h1 class="brand">MOVIES.pop</h1>
+  </div>
+  <div class="buttonWrap">
+    <div class="premiumGift">🎁 פרימיום</div>
+    <div class="particles"></div>
+  </div>
+</header>
+
+<!-- 📦 GRID סרטים -->
+<main id="movieGrid" class="grid"></main>
+
+<!-- 🎬 MODAL נגן -->
+<div id="playerModal" class="modal hidden">
+  <div class="playerBox">
+    <iframe id="player" allowfullscreen></iframe>
+    <button class="closeBtn" onclick="closeModal()">✖</button>
+  </div>
+</div>
+
+<!-- 💎 PRO FORM -->
+<div id="proForm">
+  <div id="proBox">
+    <h2>30 יום פרימיום חינם</h2>
+    <input id="user" placeholder="שם משתמש">
+    <input id="email" placeholder="אימייל">
+    <input id="pass" type="password" placeholder="סיסמה">
+    <label><input type="checkbox" id="ok"> מאשר תנאים</label>
+    <div class="buttonWrap">
+      <button onclick="goPro()">התחל עכשיו</button>
+      <div class="particles"></div>
+    </div>
+    <div class="success">🎉 ברוך הבא! יש לך 30 יום חינם 🔥</div>
+  </div>
+</div>
+
+<script>
+// --------------------- סרטים לדוגמה ---------------------
+const movies = [
+  {id:"1a2b3c", title:"סרט ראשון", image:"https://via.placeholder.com/200x300"},
+  {id:"2b3c4d", title:"סרט שני", image:"https://via.placeholder.com/200x300"},
+  {id:"3c4d5e", title:"סרט שלישי", image:"https://via.placeholder.com/200x300"}
+];
+
+// --------------------- בדיקת פרימיום ---------------------
+function isPremium() {
+  const user = localStorage.getItem("premiumUser");
+  const expire = new Date(localStorage.getItem("premiumExpire"));
+  const now = new Date();
+  return user && expire > now;
+}
+
+// --------------------- נגן ומודאל ---------------------
+const movieGrid = document.getElementById("movieGrid");
+const playerModal = document.getElementById("playerModal");
+const player = document.getElementById("player");
+
+function loadMovies() {
+  movies.forEach(movie => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `<img src="${movie.image}" alt="${movie.title}"><h3>${movie.title}</h3>`;
+    card.addEventListener('click', () => openModal(movie.id));
+    movieGrid.appendChild(card);
+  });
+}
+
+function openModal(id) {
+  if (!isPremium()) {
+    document.getElementById("proForm").style.display="flex";
+    return;
+  }
+  player.src = `https://drive.google.com/file/d/${id}/preview`;
+  playerModal.classList.remove('hidden');
+}
+
+function closeModal() {
+  player.src = '';
+  playerModal.classList.add('hidden');
+}
+
+window.addEventListener('load', loadMovies);
+
+// --------------------- פופים ---------------------
+function spawnParticles(container) {
+  for(let i=0;i<15;i++){
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = Math.random()*100 + "%";
+    p.style.animationDuration = (0.8+Math.random()*0.5) + "s";
+    container.appendChild(p);
+    setTimeout(()=>p.remove(),1200);
+  }
+}
+
+// כפתור פרימיום
+document.querySelector(".premiumGift").addEventListener("click", ()=>{
+  document.getElementById("proForm").style.display="flex";
+});
+document.querySelector(".premiumGift").addEventListener("mouseenter", ()=>{
+  spawnParticles(document.querySelector(".particles"));
+});
+
+// כפתור הרשמה פרימיום
+function goPro(){
+  let u = document.getElementById("user").value;
+  let e = document.getElementById("email").value;
+  let p = document.getElementById("pass").value;
+  let ok = document.getElementById("ok").checked;
+  if(!u || !e || !p){ alert("תמלא הכל"); return; }
+  if(!ok){ alert("אשר תנאים"); return; }
+
+  const expire = new Date();
+  expire.setDate(expire.getDate() + 30);
+  localStorage.setItem("premiumUser", u);
+  localStorage.setItem("premiumExpire", expire);
+
+  document.getElementById("proBox").querySelector("input").value="";
+  document.getElementById("proBox").querySelector(".success").style.display="block";
+  setTimeout(()=>document.getElementById("proForm").style.display="none",2000);
+}
+
+// פופים על כפתור ההרשמה
+document.querySelector("#proBox button").addEventListener("mouseenter", ()=>{
+  spawnParticles(document.querySelectorAll(".particles")[1]);
+});
+</script>
+</body>
+</html>

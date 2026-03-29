@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>הרשמה פרימיום - 30 יום חינם</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #6a00ff, #ff4fd8);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      height: 85vh;
+      display: flex;
+      border-radius: 25px;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 40px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease;
+    }
+
+    .left {
+      flex: 1;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.1), transparent);
+    }
+
+    .left h1 {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    .left p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .features {
+      margin-top: 30px;
+    }
+
+    .features div {
+      margin-bottom: 12px;
+      padding-right: 20px;
+      position: relative;
+    }
+
+    .features div::before {
+      content: "✓";
+      position: absolute;
+      right: 0;
+      color: #fff;
+    }
+
+    .right {
+      flex: 1;
+      background: rgba(255,255,255,0.15);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    label {
+      font-size: 13px;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #ff4fd8, #6a00ff);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .title {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .success {
+      display: none;
+      text-align: center;
+      font-size: 18px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- צד שמאל - מידע -->
+  <div class="left">
+    <h1>✨ 30 יום חינם</h1>
+    <p>
+      הצטרפו עכשיו למסלול הפרימיום שלנו וקבלו גישה מלאה לכל התכנים:
+      סרטים, סדרות, ותוכן בלעדי באיכות גבוהה.
+    </p>
+
+    <div class="features">
+      <div>גישה מלאה לכל הסרטים</div>
+      <div>צפייה בכל הסדרות</div>
+      <div>אזור אישי מתקדם</div>
+      <div>ללא התחייבות</div>
+    </div>
+  </div>
+
+  <!-- צד ימין - טופס -->
+  <div class="right">
+
+    <div id="formBox">
+      <div class="title">הרשמה לפרימיום</div>
+
+      <div class="form-group">
+        <input type="text" id="username" placeholder="שם משתמש">
+      </div>
+
+      <div class="form-group">
+        <input type="email" id="email" placeholder="אימייל">
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="password" placeholder="סיסמה">
+      </div>
+
+      <div class="form-group checkbox">
+        <input type="checkbox" id="privacy">
+        <label>אני מאשר/ת תנאי פרטיות</label>
+      </div>
+
+      <button onclick="signup()">התחל ניסיון חינם</button>
+    </div>
+
+    <div id="successBox" class="success">
+      🎉 נרשמת בהצלחה!  
+      <br><br>
+      יש לך 30 יום של צפייה מלאה 🔥
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function signup() {
+  const user = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+  const privacy = document.getElementById("privacy").checked;
+
+  if (!user || !email || !pass) {
+    alert("נא למלא את כל השדות");
+    return;
+  }
+
+  if (!privacy) {
+    alert("יש לאשר תנאי פרטיות");
+    return;
+  }
+
+  // כאן בעתיד תחבר לשרת
+  console.log("User:", user, email);
+
+  document.getElementById("formBox").style.display = "none";
+  document.getElementById("successBox").style.display = "block";
+}
+</script>
+
+</body>
+</html>

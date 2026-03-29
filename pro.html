@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>פרימיום - 30 יום חינם</title>
+
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg,#6a00ff,#ff4fd8);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+
+.box {
+  width:90%;
+  max-width:900px;
+  background:rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:30px;
+  display:flex;
+  gap:30px;
+}
+
+.left {
+  flex:1;
+}
+
+.right {
+  flex:1;
+}
+
+input {
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border:none;
+  border-radius:10px;
+}
+
+button {
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#ff4fd8;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:hover {
+  opacity:0.8;
+}
+
+.success {
+  display:none;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <div class="left">
+    <h1>🔥 30 יום חינם</h1>
+    <p>צפייה בכל הסרטים והסדרות ללא הגבלה</p>
+    <p>✔ כל התוכן פתוח</p>
+    <p>✔ אזור אישי</p>
+    <p>✔ ללא התחייבות</p>
+  </div>
+
+  <div class="right">
+
+    <div id="form">
+      <input id="user" placeholder="שם משתמש">
+      <input id="email" placeholder="אימייל">
+      <input id="pass" type="password" placeholder="סיסמה">
+
+      <label>
+        <input type="checkbox" id="ok"> מאשר תנאים
+      </label>
+
+      <button onclick="go()">התחל</button>
+    </div>
+
+    <div id="done" class="success">
+      🎉 נרשמת! יש לך 30 יום חינם
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function go(){
+  let u = user.value;
+  let e = email.value;
+  let p = pass.value;
+  let ok = document.getElementById("ok").checked;
+
+  if(!u || !e || !p){
+    alert("תמלא הכל");
+    return;
+  }
+
+  if(!ok){
+    alert("אשר תנאים");
+    return;
+  }
+
+  localStorage.setItem("user", u);
+
+  document.getElementById("form").style.display="none";
+  document.getElementById("done").style.display="block";
+}
+</script>
+
+</body>
+</html>

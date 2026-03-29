@@ -1,86 +1,88 @@
-/* 💎 עיצוב מודאל הרשמה פרימיום */
+/* מודאל פרימיום SUS-style */
 .premium-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: rgba(0,0,0,0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.premium-modal.show {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .premium-modal-content {
-  background-color: #fff;
+  background: linear-gradient(145deg, #000000, #1a1a1a);
+  border: 3px solid gold;
+  border-radius: 15px;
   padding: 30px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 500px;
+  max-width: 400px;
+  width: 90%;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.5s ease-in-out;
+  color: gold;
+  box-shadow: 0 0 25px gold;
+  transform: scale(0.7);
+  animation: modalIn 0.4s forwards;
 }
 
-.premium-modal h2 {
+@keyframes modalIn {
+  to { transform: scale(1); }
+}
+
+.premium-modal-content h2 {
   font-size: 24px;
-  color: #FFD700; /* זהב */
+  margin-bottom: 10px;
 }
 
-.premium-modal p {
+.premium-modal-content p {
   font-size: 16px;
   margin-bottom: 20px;
 }
 
-.premium-modal input {
-  width: 100%;
-  padding: 12px;
+.premium-modal-content input {
+  width: 90%;
   margin: 8px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid gold;
+  border-radius: 8px;
+  background: #000;
+  color: gold;
+  font-size: 14px;
 }
 
-.premium-modal button {
-  background-color: #FFD700; /* זהב */
-  color: #000;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
+.premium-modal-content button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: 2px solid gold;
+  background: black;
+  color: gold;
+  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.premium-modal button:hover {
-  background-color: #FFCC00; /* צבע זהב בהיר */
+.premium-modal-content button:hover {
+  background: gold;
+  color: black;
 }
 
-.close-btn {
+.closeBtn {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 24px;
-  background: none;
   border: none;
+  background: transparent;
+  font-size: 20px;
+  color: gold;
   cursor: pointer;
-}
-
-/* אנימציה למודל */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* הצגת המודל */
-.premium-modal.hidden {
-  visibility: hidden;
-}
-
-.premium-modal:not(.hidden) {
-  visibility: visible;
 }

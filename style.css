@@ -94,3 +94,175 @@ iframe {
   height:48vw;
   border-radius:10px;
 }
+body {
+  margin:0;
+  font-family: Arial;
+  background:#0b0b0f;
+  color:white;
+}
+
+/* HEADER */
+header {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:12px;
+}
+
+.logo {
+  width:50px;
+  border-radius:50%;
+  box-shadow:0 0 20px gold;
+  animation: breathe 3s infinite alternate;
+}
+
+@keyframes breathe {
+  from { box-shadow:0 0 10px gold; }
+  to { box-shadow:0 0 25px gold; }
+}
+
+/* TABS */
+.tabs {
+  display:flex;
+  gap:10px;
+}
+
+.tab {
+  padding:8px 14px;
+  border:none;
+  border-radius:12px;
+  background:#222;
+  color:white;
+  cursor:pointer;
+}
+
+.tab.active {
+  background:#e50914;
+}
+
+/* GRID */
+.grid {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  padding:20px;
+}
+
+/* CARD */
+.card {
+  width:180px;
+  height:260px;
+  background:#1a1a1f;
+  padding:10px;
+  border-radius:16px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 15px rgba(255,215,0,0.3);
+}
+
+.card img {
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* BUTTON */
+button {
+  padding:8px;
+  border:none;
+  border-radius:10px;
+  background:#e50914;
+  color:white;
+  cursor:pointer;
+}
+
+/* PLAYER */
+.modal {
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hidden { display:none; }
+
+iframe {
+  width:80vw;
+  height:45vw;
+}
+
+/* 💎 SUBSCRIBE CARD */
+.subscribe-modal {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  animation:fadeIn 0.4s;
+}
+
+.subscribe-card {
+  width:320px;
+  padding:25px;
+  border-radius:20px;
+  background:#111;
+  text-align:center;
+  position:relative;
+  animation:popUp 0.5s;
+}
+
+/* glow */
+.subscribe-card::before {
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:20px;
+  background:linear-gradient(45deg,gold,orange,gold);
+  z-index:-1;
+  filter:blur(10px);
+  animation:glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  from {opacity:0.3;}
+  to {opacity:0.8;}
+}
+
+.subscribe-card h2 {
+  color:gold;
+}
+
+.subscribe-card input {
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:10px;
+  border:none;
+}
+
+.subscribe-card button {
+  background:gold;
+  color:black;
+  font-weight:bold;
+}
+
+/* animations */
+@keyframes popUp {
+  from { transform:translateY(100px); opacity:0; }
+  to { transform:translateY(0); opacity:1; }
+}
+
+@keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}

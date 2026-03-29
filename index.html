@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<title>MOVIES.pop</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <img src="assets/logo.png" class="logo">
+  <h1>MOVIES.pop</h1>
+  <div id="userArea"></div>
+</header>
+
+<div id="main" class="grid"></div>
+
+<!-- 🎬 טעינה -->
+<div id="loadingScreen" class="hidden">
+  <div class="loader"></div>
+  <h2 id="loadingText"></h2>
+  <p class="brand">MOVIES.pop</p>
+</div>
+
+<!-- 🔐 הרשמה -->
+<div id="register" class="modal hidden">
+  <div class="box">
+    <h2>הרשמה</h2>
+    <input id="name" placeholder="שם משתמש">
+    <input id="email" placeholder="אימייל">
+
+    <label>
+      <input type="checkbox">
+      אני מאשר קבלת עדכונים
+    </label>
+
+    <button onclick="register()">הרשם</button>
+  </div>
+</div>
+
+<!-- 🎥 נגן -->
+<div id="playerModal" class="modal hidden">
+  <iframe id="player" allowfullscreen></iframe>
+  <button onclick="closePlayer()">❌</button>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

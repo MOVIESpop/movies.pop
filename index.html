@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MOVIES.pop</title>
 
-<!-- 🌈 CSS -->
+<!-- 🌈 CSS משופר -->
 <style>
-/* ------------------- BODY ------------------- */
 body {
   margin:0;
   font-family: Arial, sans-serif;
@@ -15,8 +14,6 @@ body {
   overflow-x:hidden;
   color:white;
 }
-
-/* ------------------- HEADER ------------------- */
 header {
   display:flex;
   justify-content: space-between;
@@ -25,25 +22,17 @@ header {
   position: relative;
   z-index:2;
 }
-
 .logoWrap {
   display:flex;
   align-items:center;
   gap:10px;
 }
-
 .logoWrap img {
   width:50px;
   height:50px;
   animation: pop 1s ease;
 }
-
-.brand {
-  font-size:24px;
-  font-weight:bold;
-}
-
-/* כפתור פרימיום */
+.brand { font-size:24px; font-weight:bold; }
 .premiumGift {
   display:inline-block;
   padding:10px 20px;
@@ -55,19 +44,10 @@ header {
   transition: transform 0.3s;
   position:relative;
 }
+.premiumGift:hover { transform: scale(1.1); }
+@keyframes pop { 0% { transform: scale(0.5); opacity:0; } 60% { transform: scale(1.2); } 100% { transform: scale(1); opacity:1; } }
 
-.premiumGift:hover {
-  transform: scale(1.1);
-}
-
-/* ------------------- ANIMATIONS ------------------- */
-@keyframes pop {
-  0% { transform: scale(0.5); opacity:0; }
-  60% { transform: scale(1.2); }
-  100% { transform: scale(1); opacity:1; }
-}
-
-/* ------------------- CLOUDS ------------------- */
+/* עננים */
 .cloud {
   position:absolute;
   background: rgba(255,255,255,0.15);
@@ -76,129 +56,64 @@ header {
   animation: moveClouds linear infinite;
   z-index:0;
 }
-
 .cloud1 { width: 400px; height:200px; top: 10%; left:-400px; animation-duration:120s; }
 .cloud2 { width: 250px; height:120px; top:50%; left:-300px; animation-duration:90s; }
 .cloud3 { width: 350px; height:180px; top:30%; left:-350px; animation-duration:150s; }
+@keyframes moveClouds { 0% { transform: translateX(0); } 100% { transform: translateX(200vw); } }
 
-@keyframes moveClouds {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(200vw); }
-}
-
-/* ------------------- GRID סרטים ------------------- */
+/* Grid סרטים */
 .grid {
   display:grid;
-  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-  gap:20px;
+  grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+  gap:15px;
   padding:20px;
   position: relative;
   z-index:1;
 }
-
 .card {
   position: relative;
   overflow: hidden;
   border-radius:15px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor:pointer;
+  background: rgba(255,255,255,0.05);
 }
-
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(255,255,255,0.3);
 }
+.card img { width:100%; display:block; border-radius:15px; transition: transform 0.3s; }
+.card:hover img { transform: scale(1.1); }
+.card h3 { text-align:center; margin:5px 0; font-size:14px; }
 
-.card img {
-  width:100%;
-  display:block;
-  border-radius:15px;
-  transition: transform 0.3s;
-}
-
-.card:hover img {
-  transform: scale(1.1);
-}
-
-.card h3 {
-  text-align:center;
-  margin:5px 0;
-  font-size:16px;
-}
-
-/* ------------------- MODAL ------------------- */
+/* Modal */
 .modal {
-  position:fixed;
-  top:0; left:0;
+  position:fixed; top:0; left:0;
   width:100%; height:100%;
   background:rgba(0,0,0,0.85);
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display:flex; justify-content:center; align-items:center;
   z-index:9999;
-  transition: opacity 0.3s;
 }
-
 .modal.hidden { display:none; }
-
-.playerBox {
-  position:relative;
-  width:80%;
-  max-width:800px;
-  height:450px;
-}
-
-.playerBox iframe {
-  width:100%;
-  height:100%;
-  border:none;
-  border-radius:15px;
-}
-
+.playerBox { position:relative; width:80%; max-width:800px; height:450px; }
+.playerBox iframe { width:100%; height:100%; border:none; border-radius:15px; }
 .closeBtn {
-  position:absolute;
-  top:10px;
-  right:10px;
-  background:none;
-  border:none;
-  color:white;
-  font-size:24px;
-  cursor:pointer;
+  position:absolute; top:10px; right:10px;
+  background:none; border:none; color:white; font-size:24px; cursor:pointer;
 }
 
-/* ------------------- PARTICLES מתחת לכפתור פרימיום ------------------- */
-.buttonWrap {
-  position: relative;
-  display:inline-block;
-}
-
-.particles {
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  width: 150px;
-  height: 50px;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
+/* Particles */
+.buttonWrap { position: relative; display:inline-block; }
+.particles { position: absolute; bottom: -10px; left: 50%; width: 150px; height: 50px; transform: translateX(-50%); pointer-events: none; }
 .particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.7;
+  position: absolute; width: 6px; height: 6px;
+  background: white; border-radius: 50%; opacity: 0.7;
   animation: rise 1s linear infinite;
 }
-
-@keyframes rise {
-  0% { transform: translateY(0) scale(0.5); opacity:1; }
-  100% { transform: translateY(-50px) scale(0); opacity:0; }
-}
-
+@keyframes rise { 0% { transform: translateY(0) scale(0.5); opacity:1; } 100% { transform: translateY(-50px) scale(0); opacity:0; } }
 </style>
 </head>
+
 <body>
 
 <!-- ☁️ עננים -->
@@ -209,11 +124,9 @@ header {
 <!-- 🔥 HEADER -->
 <header>
   <div class="logoWrap">
-    <img src="assets/logo.png" class="logo" alt="MOVIES.pop logo">
+    <img src="assets/logo.png" alt="MOVIES.pop logo">
     <h1 class="brand">MOVIES.pop</h1>
   </div>
-
-  <!-- 🎁 כפתור פרימיום עם חלקיקים -->
   <div class="buttonWrap">
     <a href="pro.html" class="premiumGift">🎁 פרימיום</a>
     <div class="particles"></div>
@@ -231,11 +144,79 @@ header {
   </div>
 </div>
 
-<!-- 🌟 JS -->
-<script src="data.js"></script>
-<script src="script.js"></script>
+<!-- 🌟 JS משולב -->
 <script>
-// 🎉 particle hover על כפתור פרימיום
+// --- DATA.js inline מלא ---
+const ASSETS_PATH = "assets/";
+const movies = [ 
+  { title: "שרק 1 (Shrek 1)", id: "1Au4tpzq7rE8SkFKAlNfSOFF5L5zqzkBX", image: "shrek1.png" },
+  { title: "שרק 2 (Shrek 2)", id: "1CgRPoW8t9tWSZBKGcadxKaYAf013EXWW", image: "shrek2.png" },
+  { title: "שרק 3 (Shrek 3)", id: "1eWgn6V10lt4YcsdVFmc9YLv7hNVDPMFZ", image: "shrek3.png" },
+
+  { title: "קונג פו פנדה 1 (Kung Fu Panda 1)", id: "11azqduzJc6d-z_Vm2cA9yTQ3Pe0zeDL-", image: "kfp1.png" },
+  { title: "קונג פו פנדה 2 (Kung Fu Panda 2)", id: "1pFqf6RshriTtVYGvzvTxp4pN41P36VbH", image: "kfp2.png" },
+  { title: "קונג פו פנדה 3 (Kung Fu Panda 3)", id: "1PF-ISOLArYVZ-lfwmuAUymBi1EeapHNZ", image: "kfp3.png" },
+  { title: "קונג פו פנדה 4 (Kung Fu Panda 4)", id: "1n_ysnrnhmrIie0Y0KNX7pig6KxX-e0Zd", image: "kfp4.png" },
+
+  { title: "זוטרופוליס 1 (Zootropolis 1)", id: "14_z-C_3QL3rlmxP_JI8H4Ew_tj8M0FjQ", image: "zootropolis1.png" },
+  { title: "זוטרופוליס 2 (Zootropolis 2)", id: "1HrTPtCnqi9PPmlbMZ6Zl7dLO_Qs4dUMq", image: "zootropolis2.png" },
+
+  { title: "בייבי די אאוט (Baby's Day Out)", id: "1vUOCa9RC_nk12vieCVSNCuGYS1TeZF22", image: "baby.png" },
+  { title: "משפחת ווילובי (The Willoughbys)", id: "1bjvvbMhET-88_02I3cg1tOTQJqGSHsjM", image: "willoughby.png" },
+
+  { title: "טד 1 (Ted 1)", id: "1sKS0jxKQk3BnOpiPRqWoAYZo1OTJ-NZA", image: "ted1.png" },
+  { title: "טד 2 (Ted 2)", id: "11HmYmdOPab3j8ui7hNjOVz68XMm6Ot62", image: "ted2.png" },
+
+  { title: "ספיידרמן: ממד העכביש (Spider‑Verse)", id: "1lMKHarLFY0OQKlg4IbrSJYBonG_Btw_u", image: "spiderman.png" },
+  { title: "מפלצות בשלג (Smallfoot)", id: "126Co8FEr23opmtNA1IbbqwOsPt8lJ_RI", image: "smallfoot.png" },
+  { title: "מעבר ליער (Over the Hedge)", id: "10AnEsLe9T85wtnia_rmqjgOBWX4iD7S7", image: "hedge.png" },
+
+  { title: "מדגסקר 3 (Madagascar 3)", id: "1Q3o-UgYzJF-FJmRlNP5Qm7BjYjmKOHVX", image: "madagascar3.png" },
+  { title: "ג'ומנג'י 2 (Jumanji 2)", id: "1jNBR1okdeR7Is8fQ8A3w09p4nbO5VWXP", image: "jumanji.png" },
+
+  { title: "גנוב על הירח 1 (Despicable Me)", id: "1z4DiNm90KsypotPeUM56bM9GPMklGjNj", image: "gro.png" },
+  { title: "אנגרי בירדס 2 (Angry Birds 2)", id: "1aayN5secOwpHVqGkQUWwBMJ0QctRVK0q", image: "angrybirds.png" },
+
+  { title: "אמיצה (Brave)", id: "15F-npGs53Cbvmh58mWIIwDLQU1Qv0Xck", image: "brave.png" },
+  { title: "הדרקון הראשון שלי 3 (Hidden World)", id: "1Aa_2OimQvI98aM-_4XsUBmsdf1dHE4fD", image: "dragon.png" },
+
+  { title: "משפחת אדמס (The Addams Family)", id: "1xB516Q6f1lznZBoCrGCVksxljvcP7rLr", image: "addams.png" },
+  { title: "בית ספר למפלצות (School Monsters)", id: "1VhBw1sANIpblJB_3CMbo11bzNG2Y_nZ5", image: "monsters.png" },
+
+  { title: "מפלצת של מלון 1 (Hotel Transylvania 1)", id: "1JTlotR3RJHV-814o482pcITFcqy0yWxI", image: "hotel1.png" },
+  { title: "מפלצת של מלון 2 (Hotel Transylvania 2)", id: "1LSNHiSL72qSPgWGCgzHghqQEM7BIe9z1", image: "hotel2.png" },
+
+  { title: "פלונטר (Tangled)", id: "1aj2sXv3ZvzfeaGb1mDcCh0d3F-OH61n5", image: "tangled.png" },
+  { title: "שחקי אותה בוסית (Like a Boss)", id: "17XZWPoNEViTkmjIqMrkuXM6WSy51Qk0q", image: "boss.png" },
+
+  { title: "דוליטל (Dolittle)", id: "11rKfis-VWzdDxxmdcLpJysRkljFLxvws", image: "dolittle.png" },
+  { title: "האביר האפל עולה (Batman)", id: "1kYhHxegIQO8sYhkTiBYa0CVF2a43T6Gl", image: "batman.png" },
+  { title: "בלגאן בחווה (Barnyard)", id: "1A7B_L-wkIS-xQ9vjqeFp9YC4f8vd44VG", image: "barnyard.png" }
+];
+
+// --- UI דינמי לטעינת סרטים ---
+const movieGrid = document.getElementById("movieGrid");
+movies.forEach(m => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `<img src="${ASSETS_PATH + m.image}" alt="${m.title}"><h3>${m.title}</h3>`;
+  card.onclick = () => openModal(m.id);
+  movieGrid.appendChild(card);
+});
+
+// --- MODAL פונקציות ---
+const modal = document.getElementById("playerModal");
+const player = document.getElementById("player");
+function openModal(id) {
+  player.src = `https://drive.google.com/file/d/${id}/preview`;
+  modal.classList.remove("hidden");
+}
+function closeModal() {
+  player.src = "";
+  modal.classList.add("hidden");
+}
+
+// --- Particles hover ---
 function spawnParticles() {
   const container = document.querySelector(".particles");
   for(let i=0;i<15;i++){
@@ -247,7 +228,6 @@ function spawnParticles() {
     setTimeout(()=>p.remove(),1200);
   }
 }
-
 document.querySelector(".premiumGift").addEventListener("mouseenter", spawnParticles);
 </script>
 

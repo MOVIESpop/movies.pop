@@ -1,31 +1,35 @@
-// Function to display the Premium modal with animation
+// 🎫 סגירת מודאל פרימיום
+function closePremium() {
+  document.getElementById("premium-modal").classList.add("hidden");
+}
+
+// 🚀 הרשמה פרימיום
+function registerPremium(event) {
+  event.preventDefault(); // למנוע ריענון דף
+  const u = document.getElementById("username").value;
+  const e = document.getElementById("email").value;
+  const p = document.getElementById("password").value;
+
+  if (!u || !e || !p) {
+    alert("הכנס שם משתמש, אימייל וסיסמה תקינים");
+    return;
+  }
+
+  localStorage.setItem("premiumUser", u); // שמירה ב-localStorage
+  document.getElementById("premium-modal").classList.add("hidden");
+  alert("ברוך הבא לפרימיום 🎉 " + u);
+}
+
+// הצגת המודל אם המשתמש לא רשום
 function showPremiumModal() {
-  document.getElementById('premium-modal').style.display = 'flex';
+  const isPremium = localStorage.getItem("premiumUser");
+  if (!isPremium) {
+    document.getElementById("premium-modal").classList.remove("hidden");
+  }
 }
 
-// Function to close the modal
-function closeModal() {
-  document.getElementById('premium-modal').style.display = 'none';
-}
+// קריאה להציג את המודל בתחילת טעינת הדף
+showPremiumModal();
 
-// Event listener for form submission to register for Premium
-document.getElementById('premium-signup-form').addEventListener('submit', function(e) {
-  e.preventDefault(); // Prevent form from submitting normally
-  
-  const username = document.getElementById('username').value;
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  // Simulate backend call to register the user
-  registerUser(username, email, password);
-  
-  // Display success message and close the modal
-  alert('ההרשמה שלך בוצעה בהצלחה!');
-  closeModal();
-});
-
-// Dummy function for registering the user (replace with real backend logic)
-function registerUser(username, email, password) {
-  console.log('Registered User:', { username, email, password });
-  // Here, you can call your backend API to store user data
-}
+// הגדרת טופס ההרשמה
+document.getElementById("premium-signup-form").addEventListener("submit", registerPremium);

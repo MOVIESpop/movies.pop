@@ -173,3 +173,34 @@ header {
   transform: translate(-50%,-50%);
   font-size: 12px;
 }
+/* ☁️ עננים כלליים ברקע */
+.cloud {
+  position: absolute;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  filter: blur(25px);
+  animation: moveClouds linear infinite;
+}
+
+.cloud1 {
+  width: 400px; height: 200px;
+  top: 10%; left: -400px;
+  animation-duration: 120s;
+}
+
+.cloud2 {
+  width: 250px; height: 120px;
+  top: 50%; left: -300px;
+  animation-duration: 90s;
+}
+
+.cloud3 {
+  width: 350px; height: 180px;
+  top: 30%; left: -350px;
+  animation-duration: 150s;
+}
+
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(200vw); }
+}

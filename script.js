@@ -1,3 +1,18 @@
+function spawnParticles() {
+  const container = document.querySelector(".particles");
+  for(let i=0;i<15;i++){
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = Math.random()*100 + "%";
+    p.style.animationDuration = (0.8+Math.random()*0.5) + "s";
+    container.appendChild(p);
+    setTimeout(()=>p.remove(),1200);
+  }
+}
+
+// trigger על hover של הכפתור
+document.querySelector("button").addEventListener("mouseenter", spawnParticles);
+
 // 🔐 בדיקת פרימיום
 function isPremium() {
   let user = localStorage.getItem("premiumUser");

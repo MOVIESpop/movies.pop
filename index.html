@@ -3,36 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOVIES.pop</title>
-
-<!-- 🌈 CSS משופר -->
+<title>MOVIES.pop - פרימיום + סרטים</title>
 <style>
+/* ------------------- BODY ------------------- */
 body {
   margin:0;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg,#6a00ff,#ff4fd8);
   overflow-x:hidden;
   color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
+
+/* ------------------- HEADER ------------------- */
 header {
   display:flex;
   justify-content: space-between;
   align-items:center;
   padding: 10px 20px;
+  width:100%;
   position: relative;
   z-index:2;
+  flex-wrap:wrap;
 }
+
 .logoWrap {
   display:flex;
   align-items:center;
   gap:10px;
 }
+
 .logoWrap img {
   width:50px;
   height:50px;
   animation: pop 1s ease;
 }
-.brand { font-size:24px; font-weight:bold; }
+
+.brand {
+  font-size:24px;
+  font-weight:bold;
+}
+
+/* כפתור פרימיום */
 .premiumGift {
   display:inline-block;
   padding:10px 20px;
@@ -43,11 +57,21 @@ header {
   text-decoration:none;
   transition: transform 0.3s;
   position:relative;
+  margin-top:5px;
 }
-.premiumGift:hover { transform: scale(1.1); }
-@keyframes pop { 0% { transform: scale(0.5); opacity:0; } 60% { transform: scale(1.2); } 100% { transform: scale(1); opacity:1; } }
 
-/* עננים */
+.premiumGift:hover {
+  transform: scale(1.1);
+}
+
+/* ------------------- ANIMATIONS ------------------- */
+@keyframes pop {
+  0% { transform: scale(0.5); opacity:0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity:1; }
+}
+
+/* ------------------- CLOUDS ------------------- */
 .cloud {
   position:absolute;
   background: rgba(255,255,255,0.15);
@@ -56,20 +80,28 @@ header {
   animation: moveClouds linear infinite;
   z-index:0;
 }
+
 .cloud1 { width: 400px; height:200px; top: 10%; left:-400px; animation-duration:120s; }
 .cloud2 { width: 250px; height:120px; top:50%; left:-300px; animation-duration:90s; }
 .cloud3 { width: 350px; height:180px; top:30%; left:-350px; animation-duration:150s; }
-@keyframes moveClouds { 0% { transform: translateX(0); } 100% { transform: translateX(200vw); } }
 
-/* Grid סרטים */
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(200vw); }
+}
+
+/* ------------------- GRID סרטים ------------------- */
 .grid {
   display:grid;
-  grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
-  gap:15px;
+  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+  gap:20px;
   padding:20px;
   position: relative;
   z-index:1;
+  width:90%;
+  max-width:1200px;
 }
+
 .card {
   position: relative;
   overflow: hidden;
@@ -78,42 +110,125 @@ header {
   cursor:pointer;
   background: rgba(255,255,255,0.05);
 }
+
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(255,255,255,0.3);
 }
-.card img { width:100%; display:block; border-radius:15px; transition: transform 0.3s; }
-.card:hover img { transform: scale(1.1); }
-.card h3 { text-align:center; margin:5px 0; font-size:14px; }
 
-/* Modal */
+.card img {
+  width:100%;
+  display:block;
+  border-radius:15px;
+  transition: transform 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card h3 {
+  text-align:center;
+  margin:5px 0;
+  font-size:16px;
+}
+
+/* ------------------- MODAL ------------------- */
 .modal {
-  position:fixed; top:0; left:0;
+  position:fixed;
+  top:0; left:0;
   width:100%; height:100%;
   background:rgba(0,0,0,0.85);
-  display:flex; justify-content:center; align-items:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   z-index:9999;
-}
-.modal.hidden { display:none; }
-.playerBox { position:relative; width:80%; max-width:800px; height:450px; }
-.playerBox iframe { width:100%; height:100%; border:none; border-radius:15px; }
-.closeBtn {
-  position:absolute; top:10px; right:10px;
-  background:none; border:none; color:white; font-size:24px; cursor:pointer;
+  transition: opacity 0.3s;
 }
 
-/* Particles */
-.buttonWrap { position: relative; display:inline-block; }
-.particles { position: absolute; bottom: -10px; left: 50%; width: 150px; height: 50px; transform: translateX(-50%); pointer-events: none; }
+.modal.hidden { display:none; }
+
+.playerBox {
+  position:relative;
+  width:80%;
+  max-width:800px;
+  height:450px;
+}
+
+.playerBox iframe {
+  width:100%;
+  height:100%;
+  border:none;
+  border-radius:15px;
+}
+
+.closeBtn {
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+
+/* ------------------- PARTICLES ------------------- */
+.buttonWrap {
+  position: relative;
+  display:inline-block;
+  margin-top:5px;
+}
+
+.particles {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 150px;
+  height: 50px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
 .particle {
-  position: absolute; width: 6px; height: 6px;
-  background: white; border-radius: 50%; opacity: 0.7;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
   animation: rise 1s linear infinite;
 }
-@keyframes rise { 0% { transform: translateY(0) scale(0.5); opacity:1; } 100% { transform: translateY(-50px) scale(0); opacity:0; } }
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(0.5); opacity:1; }
+  100% { transform: translateY(-50px) scale(0); opacity:0; }
+}
+
+/* ------------------- PRO BOX ------------------- */
+.proBox {
+  width:90%;
+  max-width:500px;
+  background:rgba(255,255,255,0.1);
+  border-radius:25px;
+  padding:30px;
+  display:flex;
+  gap:20px;
+  backdrop-filter: blur(15px);
+  position:relative;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+
+.proBox .left, .proBox .right { flex:1; min-width:200px; }
+.proBox .logo { font-size:32px; font-weight:bold; margin-bottom:20px; animation: pop 1s ease; }
+.proBox input { width:100%; padding:12px; margin-bottom:10px; border:none; border-radius:12px; }
+.proBox button { width:100%; padding:14px; border:none; border-radius:14px; background:linear-gradient(135deg,#ff4fd8,#6a00ff); color:white; font-size:16px; cursor:pointer; transition:0.3s; }
+.proBox button:hover { transform:scale(1.05); }
+.proBox .success { display:none; text-align:center; font-size:18px; margin-top:10px; color:#f1c40f; }
+
 </style>
 </head>
-
 <body>
 
 <!-- ☁️ עננים -->
@@ -124,11 +239,12 @@ header {
 <!-- 🔥 HEADER -->
 <header>
   <div class="logoWrap">
-    <img src="assets/logo.png" alt="MOVIES.pop logo">
+    <img src="assets/logo.png" class="logo" alt="MOVIES.pop logo">
     <h1 class="brand">MOVIES.pop</h1>
   </div>
+
   <div class="buttonWrap">
-    <a href="pro.html" class="premiumGift">🎁 פרימיום</a>
+    <a href="#" class="premiumGift">🎁 פרימיום</a>
     <div class="particles"></div>
   </div>
 </header>
@@ -144,91 +260,116 @@ header {
   </div>
 </div>
 
-<!-- 🌟 JS משולב -->
+<!-- 🌟 PRO BOX פרימיום -->
+<div id="proBox" class="proBox hidden">
+  <div class="left">
+    <div class="logo">🌟 MOVIES.pop</div>
+    <h2>30 יום חינם</h2>
+    <p>כל הסרטים והסדרות פתוחים לצפייה</p>
+    <p>✔ גישה מלאה</p>
+    <p>✔ אזור אישי</p>
+    <p>✔ ללא התחייבות</p>
+  </div>
+  <div class="right">
+    <div id="form">
+      <input id="user" placeholder="שם משתמש">
+      <input id="email" placeholder="אימייל">
+      <input id="pass" type="password" placeholder="סיסמה">
+      <label><input type="checkbox" id="ok"> מאשר תנאים</label>
+      <div class="buttonWrap">
+        <button onclick="go()">התחל עכשיו</button>
+        <div class="particles"></div>
+      </div>
+    </div>
+    <div id="done" class="success">🎉 ברוך הבא! יש לך 30 יום חינם 🔥</div>
+  </div>
+</div>
+
 <script>
-// --- DATA.js inline מלא ---
-const ASSETS_PATH = "assets/";
-const movies = [ 
-  { title: "שרק 1 (Shrek 1)", id: "1Au4tpzq7rE8SkFKAlNfSOFF5L5zqzkBX", image: "shrek1.png" },
-  { title: "שרק 2 (Shrek 2)", id: "1CgRPoW8t9tWSZBKGcadxKaYAf013EXWW", image: "shrek2.png" },
-  { title: "שרק 3 (Shrek 3)", id: "1eWgn6V10lt4YcsdVFmc9YLv7hNVDPMFZ", image: "shrek3.png" },
-
-  { title: "קונג פו פנדה 1 (Kung Fu Panda 1)", id: "11azqduzJc6d-z_Vm2cA9yTQ3Pe0zeDL-", image: "kfp1.png" },
-  { title: "קונג פו פנדה 2 (Kung Fu Panda 2)", id: "1pFqf6RshriTtVYGvzvTxp4pN41P36VbH", image: "kfp2.png" },
-  { title: "קונג פו פנדה 3 (Kung Fu Panda 3)", id: "1PF-ISOLArYVZ-lfwmuAUymBi1EeapHNZ", image: "kfp3.png" },
-  { title: "קונג פו פנדה 4 (Kung Fu Panda 4)", id: "1n_ysnrnhmrIie0Y0KNX7pig6KxX-e0Zd", image: "kfp4.png" },
-
-  { title: "זוטרופוליס 1 (Zootropolis 1)", id: "14_z-C_3QL3rlmxP_JI8H4Ew_tj8M0FjQ", image: "zootropolis1.png" },
-  { title: "זוטרופוליס 2 (Zootropolis 2)", id: "1HrTPtCnqi9PPmlbMZ6Zl7dLO_Qs4dUMq", image: "zootropolis2.png" },
-
-  { title: "בייבי די אאוט (Baby's Day Out)", id: "1vUOCa9RC_nk12vieCVSNCuGYS1TeZF22", image: "baby.png" },
-  { title: "משפחת ווילובי (The Willoughbys)", id: "1bjvvbMhET-88_02I3cg1tOTQJqGSHsjM", image: "willoughby.png" },
-
-  { title: "טד 1 (Ted 1)", id: "1sKS0jxKQk3BnOpiPRqWoAYZo1OTJ-NZA", image: "ted1.png" },
-  { title: "טד 2 (Ted 2)", id: "11HmYmdOPab3j8ui7hNjOVz68XMm6Ot62", image: "ted2.png" },
-
-  { title: "ספיידרמן: ממד העכביש (Spider‑Verse)", id: "1lMKHarLFY0OQKlg4IbrSJYBonG_Btw_u", image: "spiderman.png" },
-  { title: "מפלצות בשלג (Smallfoot)", id: "126Co8FEr23opmtNA1IbbqwOsPt8lJ_RI", image: "smallfoot.png" },
-  { title: "מעבר ליער (Over the Hedge)", id: "10AnEsLe9T85wtnia_rmqjgOBWX4iD7S7", image: "hedge.png" },
-
-  { title: "מדגסקר 3 (Madagascar 3)", id: "1Q3o-UgYzJF-FJmRlNP5Qm7BjYjmKOHVX", image: "madagascar3.png" },
-  { title: "ג'ומנג'י 2 (Jumanji 2)", id: "1jNBR1okdeR7Is8fQ8A3w09p4nbO5VWXP", image: "jumanji.png" },
-
-  { title: "גנוב על הירח 1 (Despicable Me)", id: "1z4DiNm90KsypotPeUM56bM9GPMklGjNj", image: "gro.png" },
-  { title: "אנגרי בירדס 2 (Angry Birds 2)", id: "1aayN5secOwpHVqGkQUWwBMJ0QctRVK0q", image: "angrybirds.png" },
-
-  { title: "אמיצה (Brave)", id: "15F-npGs53Cbvmh58mWIIwDLQU1Qv0Xck", image: "brave.png" },
-  { title: "הדרקון הראשון שלי 3 (Hidden World)", id: "1Aa_2OimQvI98aM-_4XsUBmsdf1dHE4fD", image: "dragon.png" },
-
-  { title: "משפחת אדמס (The Addams Family)", id: "1xB516Q6f1lznZBoCrGCVksxljvcP7rLr", image: "addams.png" },
-  { title: "בית ספר למפלצות (School Monsters)", id: "1VhBw1sANIpblJB_3CMbo11bzNG2Y_nZ5", image: "monsters.png" },
-
-  { title: "מפלצת של מלון 1 (Hotel Transylvania 1)", id: "1JTlotR3RJHV-814o482pcITFcqy0yWxI", image: "hotel1.png" },
-  { title: "מפלצת של מלון 2 (Hotel Transylvania 2)", id: "1LSNHiSL72qSPgWGCgzHghqQEM7BIe9z1", image: "hotel2.png" },
-
-  { title: "פלונטר (Tangled)", id: "1aj2sXv3ZvzfeaGb1mDcCh0d3F-OH61n5", image: "tangled.png" },
-  { title: "שחקי אותה בוסית (Like a Boss)", id: "17XZWPoNEViTkmjIqMrkuXM6WSy51Qk0q", image: "boss.png" },
-
-  { title: "דוליטל (Dolittle)", id: "11rKfis-VWzdDxxmdcLpJysRkljFLxvws", image: "dolittle.png" },
-  { title: "האביר האפל עולה (Batman)", id: "1kYhHxegIQO8sYhkTiBYa0CVF2a43T6Gl", image: "batman.png" },
-  { title: "בלגאן בחווה (Barnyard)", id: "1A7B_L-wkIS-xQ9vjqeFp9YC4f8vd44VG", image: "barnyard.png" }
+// --------------------- DATA MOVIES ---------------------
+const movies = [
+  { title: "שרק 1 (Shrek 1)", id: "1Au4tpzq7rE8SkFKAlNfSOFF5L5zqzkBX", image: "assets/shrek1.png" },
+  { title: "שרק 2 (Shrek 2)", id: "1CgRPoW8t9tWSZBKGcadxKaYAf013EXWW", image: "assets/shrek2.png" },
+  { title: "קונג פו פנדה 1 (Kung Fu Panda 1)", id: "11azqduzJc6d-z_Vm2cA9yTQ3Pe0zeDL-", image: "assets/kfp1.png" },
+  { title: "זוטרופוליס 1 (Zootropolis 1)", id: "14_z-C_3QL3rlmxP_JI8H4Ew_tj8M0FjQ", image: "assets/zootropolis1.png" },
+  { title: "טד 1 (Ted 1)", id: "1sKS0jxKQk3BnOpiPRqWoAYZo1OTJ-NZA", image: "assets/ted1.png" }
 ];
 
-// --- UI דינמי לטעינת סרטים ---
+// --------------------- בדיקת פרימיום ---------------------
+function isPremium() {
+  const user = localStorage.getItem("premiumUser");
+  const expire = new Date(localStorage.getItem("premiumExpire"));
+  const now = new Date();
+  return user && expire > now;
+}
+
+// --------------------- נגן ומודאל ---------------------
 const movieGrid = document.getElementById("movieGrid");
-movies.forEach(m => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `<img src="${ASSETS_PATH + m.image}" alt="${m.title}"><h3>${m.title}</h3>`;
-  card.onclick = () => openModal(m.id);
-  movieGrid.appendChild(card);
-});
-
-// --- MODAL פונקציות ---
-const modal = document.getElementById("playerModal");
+const playerModal = document.getElementById("playerModal");
 const player = document.getElementById("player");
-function openModal(id) {
-  player.src = `https://drive.google.com/file/d/${id}/preview`;
-  modal.classList.remove("hidden");
-}
-function closeModal() {
-  player.src = "";
-  modal.classList.add("hidden");
+
+function loadMovies() {
+  movies.forEach(movie => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `<img src="${movie.image}" alt="${movie.title}"><h3>${movie.title}</h3>`;
+    card.addEventListener('click', () => openModal(movie.id));
+    movieGrid.appendChild(card);
+  });
 }
 
-// --- Particles hover ---
-function spawnParticles() {
-  const container = document.querySelector(".particles");
-  for(let i=0;i<15;i++){
-    const p = document.createElement("div");
-    p.className = "particle";
-    p.style.left = Math.random()*100 + "%";
-    p.style.animationDuration = (0.8+Math.random()*0.5) + "s";
-    container.appendChild(p);
-    setTimeout(()=>p.remove(),1200);
+function openModal(id) {
+  if (!isPremium()) {
+    document.getElementById("proBox").classList.remove("hidden");
+    return;
   }
+  player.src = `https://drive.google.com/file/d/${id}/preview`;
+  playerModal.classList.remove('hidden');
 }
-document.querySelector(".premiumGift").addEventListener("mouseenter", spawnParticles);
+
+function closeModal() {
+  player.src = '';
+  playerModal.classList.add('hidden');
+}
+
+window.addEventListener('load', loadMovies);
+
+// --------------------- פרימיום ---------------------
+function go(){
+  let u = document.getElementById("user").value;
+  let e = document.getElementById("email").value;
+  let p = document.getElementById("pass").value;
+  let ok = document.getElementById("ok").checked;
+
+  if(!u || !e || !p){ alert("תמלא הכל"); return; }
+  if(!ok){ alert("אשר תנאים"); return; }
+
+  const expire = new Date();
+  expire.setDate(expire.getDate() + 30);
+  localStorage.setItem("premiumUser", u);
+  localStorage.setItem("premiumExpire", expire);
+
+  document.getElementById("form").style.display="none";
+  document.getElementById("done").style.display="block";
+}
+
+// --------------------- פופים על כפתורים ---------------------
+function spawnParticles() {
+  document.querySelectorAll(".particles").forEach(container=>{
+    for(let i=0;i<15;i++){
+      const p = document.createElement("div");
+      p.className = "particle";
+      p.style.left = Math.random()*100 + "%";
+      p.style.animationDuration = (0.8+Math.random()*0.5) + "s";
+      container.appendChild(p);
+      setTimeout(()=>p.remove(),1200);
+    }
+  });
+}
+
+document.querySelectorAll(".premiumGift, .proBox button").forEach(btn=>{
+  btn.addEventListener("mouseenter", spawnParticles);
+});
 </script>
 
 </body>

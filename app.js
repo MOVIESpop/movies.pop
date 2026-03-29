@@ -43,7 +43,10 @@ function render() {
 
 function showSeasons(seriesIndex) {
   const s = series[seriesIndex];
-  let html = `<button onclick="showTab('series')">← חזור</button><div class="grid">`;
+  let html = `
+    <button onclick="showTab('series')">← חזור</button>
+    <div class="grid">
+  `;
 
   s.seasons.forEach((season, i) => {
     html += `
@@ -60,8 +63,10 @@ function showSeasons(seriesIndex) {
 
 function showEpisodes(seriesIndex, seasonIndex) {
   const season = series[seriesIndex].seasons[seasonIndex];
-
-  let html = `<button onclick="showSeasons(${seriesIndex})">← חזור</button><div class="grid">`;
+  let html = `
+    <button onclick="showSeasons(${seriesIndex})">← חזור</button>
+    <div class="grid">
+  `;
 
   season.episodes.forEach(ep => {
     html += `
@@ -106,16 +111,12 @@ function closeSubscribe() {
 /* 👤 הרשמה */
 function register() {
   const name = document.getElementById("username").value;
-
   if (!name) {
     alert("הכנס שם משתמש");
     return;
   }
-
   localStorage.setItem("user", name);
-
   closeSubscribe();
-
   alert("ברוך הבא " + name + " 🎉");
 }
 

@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MOVIES.pop</title>
 <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="premium-modal.css">
-  <script src="premium-modal.js"></script>
+<link rel="stylesheet" href="premium-modal.css">
 </head>
 
 <body>
@@ -34,6 +33,7 @@
     <button class="closeBtn" onclick="closeModal()">✖</button>
   </div>
 </div>
+
 <!-- 💎 מודאל פרימיום -->
 <div id="premiumModal" class="premium-modal hidden">
   <div class="premium-modal-content">
@@ -56,7 +56,7 @@
     <button id="closePremiumBtn" class="close-btn">✖ סגור</button>
   </div>
 </div>
-  
+
 <!-- 📜 מודאל מדיניות פרטיות -->
 <div id="privacyModal" class="modal hidden">
   <div class="subscribe-card">
@@ -93,109 +93,8 @@
   <a href="mailto:movies0pop0@gmail.com">שלח מייל</a>
 </div>
 
+<!-- קוד הסגירה, הרשמה ופתיחת המודל -->
+<script src="premium-modal.js"></script>
 
-
-<!-- מערכת הסגירה ומדיניות פרטיות -->
-<script>
-// 🎫 סגירת מודאל פרימיום
-function closePremium() {
-  document.getElementById("premiumModal").classList.add("hidden");
-}
-
-// 🚀 הרשמה פרימיום
-function registerPremium() {
-  const u = document.getElementById("premiumUsername").value;
-  const p = document.getElementById("premiumPassword").value;
-
-  if (!u || !p) {
-    alert("הכנס שם משתמש וסיסמה תקינים");
-    return;
-  }
-
-  localStorage.setItem("premiumUser", u);
-  closePremium();
-  alert("ברוך הבא לפרימיום 🎉 " + u);
-}
-
-// 📜 בדיקה והצגת פרטיות רק פעם אחת
-function showPrivacyIfNeeded() {
-  const shown = localStorage.getItem("privacySeen");
-  if (!shown) {
-    document.getElementById("privacyModal").classList.remove("hidden");
-  }
-}
-
-// סגירת פרטיות עם שמירה שלא יציג שוב
-function closePrivacy() {
-  document.getElementById("privacyModal").classList.add("hidden");
-  localStorage.setItem("privacySeen", "true");
-}
-
-// קריאה לבדיקה בתחילת טעינת הדף
-showPrivacyIfNeeded();
-</script>
-
-</div>
-  <script>
-// 🎫 סגירת מודאל פרימיום
-function closePremium() {
-  document.getElementById("premium-modal").classList.add("hidden");
-}
-
-// 🚀 הרשמה פרימיום
-function registerPremium(event) {
-  event.preventDefault();
-
-  const u = document.getElementById("username").value.trim();
-  const e = document.getElementById("email").value.trim();
-  const p = document.getElementById("password").value.trim();
-
-  if (!u || !e || !p) {
-    alert("❗ יש למלא שם משתמש, אימייל וסיסמה כדי להצטרף לפרימיום");
-    return;
-  }
-
-  // שמירה ב‑localStorage
-  localStorage.setItem("premiumUser", u);
-  localStorage.setItem("premiumEmail", e);
-  localStorage.setItem("premiumPass", p);
-
-  alert("🎉 ברוך הבא לפרימיום, " + u + "!");
-  closePremium();
-}
-
-// 📅 אופציה ל‑30 יום
-function setPremiumExpiry() {
-  const expiryDate = new Date();
-  expiryDate.setDate(expiryDate.getDate() + 30);
-  localStorage.setItem("premiumExpiry", expiryDate.toString());
-}
-
-// 💎 בדיקת סטטוס פרימיום
-function isPremiumActive() {
-  const user = localStorage.getItem("premiumUser");
-  const expiry = localStorage.getItem("premiumExpiry");
-
-  if (!user || !expiry) return false;
-  const exp = new Date(expiry);
-
-  return exp > new Date();
-}
-
-// 🔌 חיבור אירוע טופס
-const premiumForm = document.getElementById("premium-signup-form");
-if (premiumForm) {
-  premiumForm.addEventListener("submit", (e) => {
-    registerPremium(e);
-    setPremiumExpiry(); // שמור תוקף 30 יום
-  });
-}
-
-// 🚀 הצגת המודל בתחילת טעינת הדף
-document.addEventListener("DOMContentLoaded", () => {
-  showPremiumModal();
-});
-</script>
-  <script src="premium-modal.js"></script>
 </body>
 </html>

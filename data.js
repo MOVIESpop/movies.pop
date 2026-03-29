@@ -1,4 +1,6 @@
- const movies = [
+// data.js – גרסה מלאה ומעודכנת
+
+const movies = [
   { title: "שרק 1 (Shrek 1)", id: "1Au4tpzq7rE8SkFKAlNfSOFF5L5zqzkBX", image: "assets/shrek1.png" },
   { title: "שרק 2 (Shrek 2)", id: "1CgRPoW8t9tWSZBKGcadxKaYAf013EXWW", image: "assets/shrek2.png" },
   { title: "שרק 3 (Shrek 3)", id: "1eWgn6V10lt4YcsdVFmc9YLv7hNVDPMFZ", image: "assets/shrek3.png" },
@@ -43,6 +45,7 @@
   { title: "האביר האפל עולה (Batman)", id: "1kYhHxegIQO8sYhkTiBYa0CVF2a43T6Gl", image: "assets/batman.png" },
   { title: "בלגאן בחווה (Barnyard)", id: "1A7B_L-wkIS-xQ9vjqeFp9YC4f8vd44VG", image: "assets/barnyard.png" }
 ];
+
 const series = [
   {
     name: "צפוף",

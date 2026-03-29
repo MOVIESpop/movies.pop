@@ -10,35 +10,14 @@
 <header>
   <img src="assets/logo.png" class="logo">
   <h1>MOVIES.pop</h1>
-  <div id="userArea"></div>
+  <div class="tabs">
+    <button onclick="showTab('movies')" id="tabMovies" class="tab active">Movies</button>
+    <button onclick="showTab('series')" id="tabSeries" class="tab">Series</button>
+  </div>
 </header>
 
-<div id="main" class="grid"></div>
+<div id="main"></div>
 
-<!-- טוען / פרסומת -->
-<div id="loadingScreen" class="hidden">
-  <div class="loader"></div>
-  <h2 id="loadingText"></h2>
-  <p class="brand">MOVIES.pop</p>
-</div>
-
-<!-- הרשמה -->
-<div id="register" class="modal hidden">
-  <div class="box">
-    <h2>הרשמה</h2>
-    <input id="name" placeholder="שם משתמש">
-    <input id="email" placeholder="אימייל">
-
-    <label>
-      <input type="checkbox">
-      אני מאשר קבלת עדכונים
-    </label>
-
-    <button onclick="register()">הרשם</button>
-  </div>
-</div>
-
-<!-- נגן -->
 <div id="playerModal" class="modal hidden">
   <iframe id="player" allowfullscreen></iframe>
   <button onclick="closePlayer()">❌</button>
@@ -46,6 +25,5 @@
 
 <script src="data.js"></script>
 <script src="app.js"></script>
-
 </body>
 </html>

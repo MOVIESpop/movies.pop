@@ -122,4 +122,20 @@ function register() {
 function closePrivacy() {
   document.getElementById("privacyModal").classList.add("hidden");
 }
+// בדיקת פרטיות
+function checkPrivacy() {
+  const privacySeen = localStorage.getItem("privacySeen");
+  if (!privacySeen) {
+    document.getElementById("privacyModal").classList.remove("hidden");
+  }
+}
+
+// קריאה לבדיקה בתחילת הקוד
+checkPrivacy();
+
+// שומר שלא יציג שוב
+function closePrivacy() {
+  document.getElementById("privacyModal").classList.add("hidden");
+  localStorage.setItem("privacySeen", "true");
+}
 showTab("movies");

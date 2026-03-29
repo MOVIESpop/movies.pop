@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOVIES.pop - פרימיום + סרטים</title>
+<title>MOVIES.pop - חוויה פרימיום</title>
+
 <style>
 /* ------------------- BODY ------------------- */
 body {
@@ -12,9 +13,6 @@ body {
   background: linear-gradient(135deg,#6a00ff,#ff4fd8);
   overflow-x:hidden;
   color:white;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
 }
 
 /* ------------------- HEADER ------------------- */
@@ -22,42 +20,40 @@ header {
   display:flex;
   justify-content: space-between;
   align-items:center;
-  padding: 10px 20px;
-  width:100%;
+  padding: 15px 30px;
   position: relative;
   z-index:2;
-  flex-wrap:wrap;
 }
 
 .logoWrap {
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:15px;
 }
 
 .logoWrap img {
-  width:50px;
-  height:50px;
+  width:55px;
+  height:55px;
   animation: pop 1s ease;
 }
 
 .brand {
-  font-size:24px;
+  font-size:28px;
   font-weight:bold;
 }
 
-/* כפתור פרימיום */
+/* ------------------- BUTTON PREMIUM ------------------- */
 .premiumGift {
   display:inline-block;
-  padding:10px 20px;
-  border-radius:12px;
+  padding:12px 25px;
+  border-radius:18px;
   background: linear-gradient(135deg,#ff4fd8,#6a00ff);
   color:white;
   font-weight:bold;
   text-decoration:none;
+  cursor:pointer;
   transition: transform 0.3s;
   position:relative;
-  margin-top:5px;
 }
 
 .premiumGift:hover {
@@ -85,41 +81,35 @@ header {
 .cloud2 { width: 250px; height:120px; top:50%; left:-300px; animation-duration:90s; }
 .cloud3 { width: 350px; height:180px; top:30%; left:-350px; animation-duration:150s; }
 
-@keyframes moveClouds {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(200vw); }
-}
+@keyframes moveClouds { 0% { transform: translateX(0); } 100% { transform: translateX(200vw); } }
 
 /* ------------------- GRID סרטים ------------------- */
 .grid {
   display:grid;
   grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-  gap:20px;
-  padding:20px;
+  gap:25px;
+  padding:25px;
   position: relative;
   z-index:1;
-  width:90%;
-  max-width:1200px;
 }
 
 .card {
   position: relative;
   overflow: hidden;
-  border-radius:15px;
+  border-radius:18px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor:pointer;
-  background: rgba(255,255,255,0.05);
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+  box-shadow: 0 10px 25px rgba(255,255,255,0.4);
 }
 
 .card img {
   width:100%;
   display:block;
-  border-radius:15px;
+  border-radius:18px;
   transition: transform 0.3s;
 }
 
@@ -129,7 +119,7 @@ header {
 
 .card h3 {
   text-align:center;
-  margin:5px 0;
+  margin:7px 0;
   font-size:16px;
 }
 
@@ -138,7 +128,7 @@ header {
   position:fixed;
   top:0; left:0;
   width:100%; height:100%;
-  background:rgba(0,0,0,0.85);
+  background:rgba(0,0,0,0.9);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -150,16 +140,16 @@ header {
 
 .playerBox {
   position:relative;
-  width:80%;
-  max-width:800px;
-  height:450px;
+  width:85%;
+  max-width:900px;
+  height:500px;
 }
 
 .playerBox iframe {
   width:100%;
   height:100%;
   border:none;
-  border-radius:15px;
+  border-radius:18px;
 }
 
 .closeBtn {
@@ -169,7 +159,7 @@ header {
   background:none;
   border:none;
   color:white;
-  font-size:24px;
+  font-size:28px;
   cursor:pointer;
 }
 
@@ -177,15 +167,14 @@ header {
 .buttonWrap {
   position: relative;
   display:inline-block;
-  margin-top:5px;
 }
 
 .particles {
   position: absolute;
   bottom: -10px;
   left: 50%;
-  width: 150px;
-  height: 50px;
+  width: 160px;
+  height: 60px;
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -196,7 +185,7 @@ header {
   height: 6px;
   background: white;
   border-radius: 50%;
-  opacity: 0.7;
+  opacity: 0.8;
   animation: rise 1s linear infinite;
 }
 
@@ -205,29 +194,31 @@ header {
   100% { transform: translateY(-50px) scale(0); opacity:0; }
 }
 
-/* ------------------- PRO BOX ------------------- */
-.proBox {
+/* ------------------- PREMIUM FORM ------------------- */
+#proBox {
   width:90%;
-  max-width:500px;
+  max-width:950px;
   background:rgba(255,255,255,0.1);
   border-radius:25px;
   padding:30px;
   display:flex;
-  gap:20px;
+  gap:30px;
   backdrop-filter: blur(15px);
-  position:relative;
+  margin:30px auto;
   flex-wrap:wrap;
-  margin:20px 0;
 }
 
-.proBox .left, .proBox .right { flex:1; min-width:200px; }
-.proBox .logo { font-size:32px; font-weight:bold; margin-bottom:20px; animation: pop 1s ease; }
-.proBox input { width:100%; padding:12px; margin-bottom:10px; border:none; border-radius:12px; }
-.proBox button { width:100%; padding:14px; border:none; border-radius:14px; background:linear-gradient(135deg,#ff4fd8,#6a00ff); color:white; font-size:16px; cursor:pointer; transition:0.3s; }
-.proBox button:hover { transform:scale(1.05); }
-.proBox .success { display:none; text-align:center; font-size:18px; margin-top:10px; color:#f1c40f; }
+.left, .right { flex:1; min-width:250px; }
 
+.logo { font-size:32px; font-weight:bold; margin-bottom:20px; animation: pop 1s ease; }
+
+input { width:100%; padding:12px; margin-bottom:10px; border:none; border-radius:12px; }
+button { width:100%; padding:14px; border:none; border-radius:14px; background:linear-gradient(135deg,#ff4fd8,#6a00ff); color:white; font-size:16px; cursor:pointer; transition:0.3s; }
+button:hover { transform:scale(1.05); }
+
+.success { display:none; text-align:center; font-size:18px; margin-top:10px; color:#f1c40f; }
 </style>
+
 </head>
 <body>
 
@@ -239,12 +230,12 @@ header {
 <!-- 🔥 HEADER -->
 <header>
   <div class="logoWrap">
-    <img src="assets/logo.png" class="logo" alt="MOVIES.pop logo">
+    <img src="https://i.ibb.co/7QpKsCX/logo.png" alt="MOVIES.pop logo">
     <h1 class="brand">MOVIES.pop</h1>
   </div>
 
   <div class="buttonWrap">
-    <a href="#" class="premiumGift">🎁 פרימיום</a>
+    <a class="premiumGift">🎁 פרימיום</a>
     <div class="particles"></div>
   </div>
 </header>
@@ -260,8 +251,8 @@ header {
   </div>
 </div>
 
-<!-- 🌟 PRO BOX פרימיום -->
-<div id="proBox" class="proBox hidden">
+<!-- 🏆 PREMIUM FORM -->
+<div id="proBox">
   <div class="left">
     <div class="logo">🌟 MOVIES.pop</div>
     <h2>30 יום חינם</h2>
@@ -277,7 +268,7 @@ header {
       <input id="pass" type="password" placeholder="סיסמה">
       <label><input type="checkbox" id="ok"> מאשר תנאים</label>
       <div class="buttonWrap">
-        <button onclick="go()">התחל עכשיו</button>
+        <button>התחל עכשיו</button>
         <div class="particles"></div>
       </div>
     </div>
@@ -286,24 +277,21 @@ header {
 </div>
 
 <script>
-// --------------------- DATA MOVIES ---------------------
+// ===================== SAMPLE MOVIES =====================
 const movies = [
-  { title: "שרק 1 (Shrek 1)", id: "1Au4tpzq7rE8SkFKAlNfSOFF5L5zqzkBX", image: "assets/shrek1.png" },
-  { title: "שרק 2 (Shrek 2)", id: "1CgRPoW8t9tWSZBKGcadxKaYAf013EXWW", image: "assets/shrek2.png" },
-  { title: "קונג פו פנדה 1 (Kung Fu Panda 1)", id: "11azqduzJc6d-z_Vm2cA9yTQ3Pe0zeDL-", image: "assets/kfp1.png" },
-  { title: "זוטרופוליס 1 (Zootropolis 1)", id: "14_z-C_3QL3rlmxP_JI8H4Ew_tj8M0FjQ", image: "assets/zootropolis1.png" },
-  { title: "טד 1 (Ted 1)", id: "1sKS0jxKQk3BnOpiPRqWoAYZo1OTJ-NZA", image: "assets/ted1.png" }
+  { id:"1a2b3c4d5e", title:"סרט הרפתקאות 1", image:"https://i.ibb.co/3R4w8PJ/movie1.jpg" },
+  { id:"2b3c4d5e6f", title:"סרט פעולה 2", image:"https://i.ibb.co/KxFg5Jf/movie2.jpg" },
+  { id:"3c4d5e6f7g", title:"סרט קומדיה 3", image:"https://i.ibb.co/58dZ5L7/movie3.jpg" }
 ];
 
-// --------------------- בדיקת פרימיום ---------------------
+// ===================== PREMIUM CHECK =====================
 function isPremium() {
   const user = localStorage.getItem("premiumUser");
   const expire = new Date(localStorage.getItem("premiumExpire"));
-  const now = new Date();
-  return user && expire > now;
+  return user && new Date() < expire;
 }
 
-// --------------------- נגן ומודאל ---------------------
+// ===================== MODAL & PLAYER =====================
 const movieGrid = document.getElementById("movieGrid");
 const playerModal = document.getElementById("playerModal");
 const player = document.getElementById("player");
@@ -312,15 +300,20 @@ function loadMovies() {
   movies.forEach(movie => {
     const card = document.createElement('div');
     card.classList.add('card');
-    card.innerHTML = `<img src="${movie.image}" alt="${movie.title}"><h3>${movie.title}</h3>`;
-    card.addEventListener('click', () => openModal(movie.id));
+    card.innerHTML = `
+      <img src="${movie.image}" alt="${movie.title}">
+      <h3>${movie.title}</h3>
+    `;
+    card.addEventListener('click', () => openModal(movie.id, movie.title));
     movieGrid.appendChild(card);
   });
 }
 
-function openModal(id) {
+function openModal(id, title) {
   if (!isPremium()) {
-    document.getElementById("proBox").classList.remove("hidden");
+    if(confirm(`${title} זמין רק למנויי פרימיום! הירשם עכשיו ל-30 יום חינם.`)) {
+      document.getElementById("form").scrollIntoView({behavior:"smooth"});
+    }
     return;
   }
   player.src = `https://drive.google.com/file/d/${id}/preview`;
@@ -332,43 +325,54 @@ function closeModal() {
   playerModal.classList.add('hidden');
 }
 
-window.addEventListener('load', loadMovies);
-
-// --------------------- פרימיום ---------------------
-function go(){
-  let u = document.getElementById("user").value;
-  let e = document.getElementById("email").value;
-  let p = document.getElementById("pass").value;
-  let ok = document.getElementById("ok").checked;
-
-  if(!u || !e || !p){ alert("תמלא הכל"); return; }
-  if(!ok){ alert("אשר תנאים"); return; }
-
-  const expire = new Date();
-  expire.setDate(expire.getDate() + 30);
-  localStorage.setItem("premiumUser", u);
-  localStorage.setItem("premiumExpire", expire);
-
-  document.getElementById("form").style.display="none";
-  document.getElementById("done").style.display="block";
+// ===================== PARTICLES =====================
+function spawnParticles(containerSelector=".particles") {
+  const container = document.querySelector(containerSelector);
+  if (!container) return;
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = Math.random() * 100 + "%";
+    p.style.animationDuration = (0.8 + Math.random() * 0.7) + "s";
+    container.appendChild(p);
+    setTimeout(() => p.remove(), 1300);
+  }
 }
 
-// --------------------- פופים על כפתורים ---------------------
-function spawnParticles() {
-  document.querySelectorAll(".particles").forEach(container=>{
-    for(let i=0;i<15;i++){
-      const p = document.createElement("div");
-      p.className = "particle";
-      p.style.left = Math.random()*100 + "%";
-      p.style.animationDuration = (0.8+Math.random()*0.5) + "s";
-      container.appendChild(p);
-      setTimeout(()=>p.remove(),1200);
-    }
+document.querySelectorAll(".premiumGift, #form button").forEach(btn => {
+  btn.addEventListener("mouseenter", () => spawnParticles());
+});
+
+// ===================== PREMIUM FORM =====================
+function setupPremiumForm() {
+  const form = document.getElementById("form");
+  const done = document.getElementById("done");
+  if (!form || !done) return;
+
+  form.querySelector("button").addEventListener("click", () => {
+    const u = form.querySelector("#user").value;
+    const e = form.querySelector("#email").value;
+    const p = form.querySelector("#pass").value;
+    const ok = form.querySelector("#ok").checked;
+
+    if (!u || !e || !p) return alert("תמלא את כל השדות");
+    if (!ok) return alert("נא לאשר את התנאים");
+
+    const expire = new Date();
+    expire.setDate(expire.getDate() + 30);
+    localStorage.setItem("premiumUser", u);
+    localStorage.setItem("premiumExpire", expire);
+
+    form.style.display = "none";
+    done.style.display = "block";
+    spawnParticles("#done .particles");
   });
 }
 
-document.querySelectorAll(".premiumGift, .proBox button").forEach(btn=>{
-  btn.addEventListener("mouseenter", spawnParticles);
+// ===================== INIT =====================
+window.addEventListener("load", () => {
+  loadMovies();
+  setupPremiumForm();
 });
 </script>
 

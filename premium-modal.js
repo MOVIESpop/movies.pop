@@ -13,11 +13,8 @@ function closePremium() {
   premiumModal.classList.remove("show");
 }
 
-// אירוע סגירה
+// סגירה רק בלחיצה על כפתור סגור או לאחר הצטרפות
 closeBtn.addEventListener("click", closePremium);
-premiumModal.addEventListener("click", (e) => {
-  if (e.target === premiumModal) closePremium();
-});
 
 // הרשמה פרימיום
 premiumForm.addEventListener("submit", (e) => {
@@ -26,10 +23,17 @@ premiumForm.addEventListener("submit", (e) => {
   const email = document.getElementById("premiumEmail").value;
   const password = document.getElementById("premiumPassword").value;
 
-  if (!username || !email || !password) return alert("נא למלא את כל השדות");
+  if (!username || !email || !password) {
+    return alert("נא למלא את כל השדות");
+  }
 
+  // שומר את הנתונים ב-localStorage
   localStorage.setItem("premiumUser", JSON.stringify({ username, email }));
+
+  // סוגר את המודל לאחר הצטרפות
   closePremium();
+  
+  // מראה הודעת ברוך הבא
   alert(`🎉 ברוך הבא לפרימיום, ${username}!`);
 });
 

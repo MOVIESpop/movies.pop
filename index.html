@@ -2,28 +2,96 @@
 <html lang="he">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MOVIES.pop</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+<!-- 🔥 HEADER -->
 <header>
-  <img src="assets/logo.png" class="logo">
-  <h1>MOVIES.pop</h1>
+  <div class="logoWrap">
+    <img src="assets/logo.png" class="logo">
+    <h1 class="brand">MOVIES.pop</h1>
+  </div>
+
   <div class="tabs">
-    <button onclick="showTab('movies')" id="tabMovies" class="tab active">Movies</button>
-    <button onclick="showTab('series')" id="tabSeries" class="tab">Series</button>
+    <button onclick="showTab('movies')" id="tabMovies" class="tab active">🎬 סרטים</button>
+    <button onclick="showTab('series')" id="tabSeries" class="tab">📺 סדרות</button>
   </div>
 </header>
 
+<!-- 📦 תוכן -->
 <div id="main"></div>
 
+<!-- 🎬 נגן -->
 <div id="playerModal" class="modal hidden">
-  <iframe id="player" allowfullscreen></iframe>
-  <button onclick="closePlayer()">❌</button>
+  <div class="playerBox">
+    <iframe id="player" allowfullscreen></iframe>
+    <button class="closeBtn" onclick="closePlayer()">✖</button>
+  </div>
 </div>
 
+<!-- 💎 הרשמה -->
+<div id="subscribeModal" class="subscribe-modal hidden">
+  <div class="subscribe-card">
+
+    <div class="diamond"></div>
+
+    <h2>💎 מנוי פרימיום חינם</h2>
+    <p>כדי לצפות בתוכן יש להירשם</p>
+
+    <input id="username" placeholder="שם משתמש">
+    <input id="email" placeholder="אימייל">
+
+    <label class="check">
+      <input type="checkbox" id="agree">
+      מאשר קבלת עדכונים
+    </label>
+
+    <button onclick="register()">הצטרף עכשיו</button>
+  </div>
+</div>
+
+<!-- 📜 פרטיות -->
+<div id="privacyModal" class="subscribe-modal hidden">
+  <div class="subscribe-card">
+    <h2>📜 תנאי פרטיות</h2>
+    <p>
+      האתר MOVIES.pop שומר על פרטיות המשתמשים.  
+      האימייל ישמש לעדכונים בלבד ולא יועבר לצד שלישי.
+    </p>
+    <button onclick="closePrivacy()">סגור</button>
+  </div>
+</div>
+
+<!-- ⏳ טעינה -->
+<div id="loadingScreen" class="loading hidden">
+  <div class="loaderContent">
+    <img src="assets/logo.png" class="loadingLogo">
+    <h2>MOVIES.pop</h2>
+    <p>טוען...</p>
+  </div>
+</div>
+
+<!-- ❤️ אזור אישי (מוכן להמשך) -->
+<div id="profilePanel" class="profile hidden">
+  <h2 id="welcomeUser"></h2>
+
+  <h3>❤️ אהובים</h3>
+  <div id="favorites"></div>
+
+  <h3>👁️ צפיתי לאחרונה</h3>
+  <div id="recent"></div>
+
+  <h3>📬 נשמח לשמוע</h3>
+  <a href="mailto:movies0pop0@gmail.com">שלח מייל</a>
+</div>
+
+<!-- 🔗 קבצים -->
 <script src="data.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>

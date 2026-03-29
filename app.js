@@ -119,5 +119,7 @@ function register() {
   closeSubscribe();
   alert("ברוך הבא " + name + " 🎉");
 }
-
+function closePrivacy() {
+  document.getElementById("privacyModal").classList.add("hidden");
+}
 showTab("movies");

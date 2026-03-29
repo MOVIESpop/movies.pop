@@ -1,131 +1,86 @@
-/* Premium Modal Styles */
+/* 💎 עיצוב מודאל הרשמה פרימיום */
 .premium-modal {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 1s ease-out;
-  z-index: 1000;
+  visibility: hidden;
 }
 
 .premium-modal-content {
-  background-color: #1d1d1d;
-  color: #f1c40f;
-  padding: 40px 60px;
-  border-radius: 20px;
-  width: 70%;
-  max-width: 700px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
   text-align: center;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-  transform: scale(0);
-  animation: scaleIn 0.8s ease-out forwards;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .premium-modal h2 {
-  font-size: 2.2em;
-  margin-bottom: 20px;
-  font-weight: bold;
-  animation: fadeInUp 1s ease-out;
+  font-size: 24px;
+  color: #FFD700; /* זהב */
 }
 
 .premium-modal p {
-  font-size: 1.5em;
-  margin-bottom: 30px;
-  animation: fadeInUp 1.5s ease-out;
-}
-
-.premium-modal form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  font-size: 16px;
   margin-bottom: 20px;
 }
 
-.premium-modal label {
-  font-size: 1.1em;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #f39c12;
-}
-
 .premium-modal input {
+  width: 100%;
   padding: 12px;
-  border: 2px solid #f1c40f;
-  border-radius: 10px;
-  background-color: #333;
-  color: #f1c40f;
-  font-size: 1.1em;
-  transition: all 0.3s ease;
-}
-
-.premium-modal input:focus {
-  border-color: #f39c12;
-  outline: none;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .premium-modal button {
-  padding: 15px;
-  background-color: #f1c40f;
+  background-color: #FFD700; /* זהב */
+  color: #000;
+  padding: 12px 20px;
   border: none;
-  color: #2c3e50;
-  font-size: 1.2em;
+  border-radius: 5px;
   cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
 }
 
 .premium-modal button:hover {
-  background-color: #e67e22;
+  background-color: #FFCC00; /* צבע זהב בהיר */
 }
 
-.premium-modal .close-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #2c3e50;
-  color: #f1c40f;
-  font-size: 1.2em;
-  cursor: pointer;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
   border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-.premium-modal .close-btn:hover {
-  background-color: #34495e;
-}
-
-/* Animations */
+/* אנימציה למודל */
 @keyframes fadeIn {
   from {
     opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* הצגת המודל */
+.premium-modal.hidden {
+  visibility: hidden;
+}
+
+.premium-modal:not(.hidden) {
+  visibility: visible;
 }

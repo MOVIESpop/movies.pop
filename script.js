@@ -1,3 +1,10 @@
+function isPremium() {
+  let user = localStorage.getItem("premiumUser");
+  let expire = new Date(localStorage.getItem("premiumExpire"));
+  let now = new Date();
+
+  return user && expire > now;
+}
 const movieGrid = document.getElementById("movieGrid");
 const playerModal = document.getElementById("playerModal");
 const player = document.getElementById("player");

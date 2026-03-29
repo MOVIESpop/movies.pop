@@ -51,6 +51,7 @@ const series = [
     seasons: [
       {
         name: "עונה 1",
+        image: "assets/
         episodes: [
           { title: "פרק 1", id: "1MoAzl5BX5Se80XOeypPoZhjgLIROjcxC" },
           { title: "פרק 2", id: "1isZiALgbbQWagGzt4GxysVq1_Qfd4tvI" },

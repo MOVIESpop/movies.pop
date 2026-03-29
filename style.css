@@ -124,3 +124,52 @@ body::before {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+}
+
+/* 🎁 כפתור מתנה */
+.premiumGift {
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(135deg, gold, orange);
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+
+/* סרט */
+.premiumGift::before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background: white;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+/* hover */
+.premiumGift:hover {
+  padding: 12px 30px;
+  transform: scale(1.1);
+}
+
+/* טקסט נוסף */
+.premiumGift:hover::after {
+  content: "✨ 30 יום חינם";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 12px;
+}

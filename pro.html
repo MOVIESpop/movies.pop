@@ -26,17 +26,10 @@ body {
   filter:blur(20px);
   animation: moveClouds 60s linear infinite;
 }
-
-.cloud:nth-child(1){
-  width:300px;height:150px;top:10%;left:-200px;
-}
-.cloud:nth-child(2){
-  width:200px;height:100px;top:70%;left:-150px;
-  animation-duration:80s;
-}
+.cloud:nth-child(1){width:300px;height:150px;top:10%;left:-200px;}
+.cloud:nth-child(2){width:200px;height:100px;top:70%;left:-150px;animation-duration:80s;}
 
 @keyframes moveClouds {
-  from { transform: translateX(0); }
   to { transform: translateX(150vw); }
 }
 
@@ -50,26 +43,31 @@ body {
   display:flex;
   gap:30px;
   backdrop-filter: blur(15px);
-  z-index:2;
+  animation: fadeIn 0.8s ease;
 }
 
-/* 🎉 שם האתר POP */
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+/* 🎉 לוגו */
 .logo {
   font-size:32px;
   font-weight:bold;
   margin-bottom:20px;
   animation: pop 1s ease;
 }
-
 @keyframes pop {
   0% { transform: scale(0.5); opacity:0; }
   60% { transform: scale(1.2); }
-  100% { transform: scale(1); opacity:1; }
+  100% { transform: scale(1); }
 }
 
 .left { flex:1; }
 .right { flex:1; }
 
+/* שדות */
 input {
   width:100%;
   padding:12px;
@@ -78,6 +76,14 @@ input {
   border-radius:12px;
 }
 
+/* חוזק סיסמה */
+.strength {
+  font-size:12px;
+  margin-bottom:10px;
+  opacity:0.8;
+}
+
+/* כפתור */
 button {
   width:100%;
   padding:14px;
@@ -89,7 +95,6 @@ button {
   cursor:pointer;
   transition:0.3s;
 }
-
 button:hover {
   transform:scale(1.05);
 }
@@ -99,23 +104,26 @@ button:hover {
   text-align:center;
   font-size:18px;
 }
+
+.timer {
+  margin-top:10px;
+  font-size:14px;
+  opacity:0.9;
+}
 </style>
 </head>
 
 <body>
 
-<!-- ☁️ עננים -->
 <div class="cloud"></div>
 <div class="cloud"></div>
 
 <div class="box">
 
   <div class="left">
-    <div class="logo">🌟 MOVIES.pop </div>
-
+    <div class="logo">🌟 MOVIES.pop</div>
     <h2>30 יום חינם</h2>
     <p>כל הסרטים והסדרות פתוחים לצפייה</p>
-
     <p>✔ גישה מלאה</p>
     <p>✔ אזור אישי</p>
     <p>✔ ללא התחייבות</p>
@@ -126,7 +134,9 @@ button:hover {
     <div id="form">
       <input id="user" placeholder="שם משתמש">
       <input id="email" placeholder="אימייל">
-      <input id="pass" type="password" placeholder="סיסמה">
+      <input id="pass" type="password" placeholder="סיסמה" oninput="checkStrength()">
+
+      <div id="strength" class="strength"></div>
 
       <label>
         <input type="checkbox" id="ok"> מאשר תנאים
@@ -137,6 +147,7 @@ button:hover {
 
     <div id="done" class="success">
       🎉 ברוך הבא! יש לך 30 יום חינם 🔥
+      <div class="timer" id="timer"></div>
     </div>
 
   </div>
@@ -144,6 +155,21 @@ button:hover {
 </div>
 
 <script>
+// בדיקה אם כבר רשום
+if(localStorage.getItem("premiumUser")){
+  showSuccess();
+}
+
+// חוזק סיסמה
+function checkStrength(){
+  let val = pass.value;
+  let txt = "חלשה";
+  if(val.length > 5) txt = "בינונית";
+  if(val.length > 8) txt = "חזקה";
+  document.getElementById("strength").innerText = "חוזק סיסמה: " + txt;
+}
+
+// הרשמה
 function go(){
   let u = user.value;
   let e = email.value;
@@ -160,10 +186,38 @@ function go(){
     return;
   }
 
-  localStorage.setItem("user", u);
+  let expire = new Date();
+  expire.setDate(expire.getDate() + 30);
 
+  localStorage.setItem("premiumUser", u);
+  localStorage.setItem("premiumExpire", expire);
+
+  showSuccess();
+}
+
+// הצגת הצלחה
+function showSuccess(){
   document.getElementById("form").style.display="none";
   document.getElementById("done").style.display="block";
+  updateTimer();
+}
+
+// טיימר
+function updateTimer(){
+  let expire = new Date(localStorage.getItem("premiumExpire"));
+  let now = new Date();
+
+  let diff = expire - now;
+  let days = Math.floor(diff / (1000*60*60*24));
+
+  document.getElementById("timer").innerText =
+    "נשארו לך " + days + " ימים לפרימיום";
+
+  if(days <= 0){
+    localStorage.removeItem("premiumUser");
+    localStorage.removeItem("premiumExpire");
+    location.reload();
+  }
 }
 </script>
 

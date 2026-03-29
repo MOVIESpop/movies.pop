@@ -33,30 +33,28 @@
     <button class="closeBtn" onclick="closeModal()">✖</button>
   </div>
 </div>
-
-<!-- 💎 מודאל פרימיום מתקדם -->
-<div id="premium-modal" class="premium-modal">
+<!-- 💎 מודאל פרימיום -->
+<div id="premiumModal" class="premium-modal hidden">
   <div class="premium-modal-content">
     <h2>ההצטרפות שלך לפרימיום!</h2>
     <p>ברוך הבא לעולם של אולטרה פרימיום! כל התוכן בהישג ידך. הירשם עכשיו וקבל 30 יום בחינם כחלק מתוכנית נסיון זמנית השירות בקרוב בתשלום!</p>
     
-    <form id="premium-signup-form">
-      <label for="username">שם משתמש</label>
-      <input type="text" id="username" name="username" placeholder="הזן שם משתמש" required>
+    <form id="premiumForm">
+      <label for="premiumUsername">שם משתמש</label>
+      <input type="text" id="premiumUsername" name="username" placeholder="הזן שם משתמש" required>
 
-      <label for="email">אימייל</label>
-      <input type="email" id="email" name="email" placeholder="הזן אימייל" required>
+      <label for="premiumEmail">אימייל</label>
+      <input type="email" id="premiumEmail" name="email" placeholder="הזן אימייל" required>
 
-      <label for="password">סיסמה</label>
-      <input type="password" id="password" name="password" placeholder="הזן סיסמה" required>
+      <label for="premiumPassword">סיסמה</label>
+      <input type="password" id="premiumPassword" name="password" placeholder="הזן סיסמה" required>
 
       <button type="submit">הצטרף לפרימיום</button>
     </form>
 
-    <button class="close-btn" onclick="closeModal()">✖ סגור</button>
+    <button id="closePremiumBtn" class="close-btn">✖ סגור</button>
   </div>
 </div>
-
 <!-- 📜 מודאל מדיניות פרטיות -->
 <div id="privacyModal" class="modal hidden">
   <div class="subscribe-card">

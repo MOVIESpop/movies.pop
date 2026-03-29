@@ -1,4 +1,3 @@
-// data.js – גרסה מלאה ומעודכנת
 
 const movies = [
   { title: "שרק 1 (Shrek 1)", id: "1Au4tpzq7rE8SkFKAlNfSOFF5L5zqzkBX", image: "assets/shrek1.png" },

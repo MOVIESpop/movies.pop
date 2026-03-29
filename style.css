@@ -1,20 +1,23 @@
-/* כלל כללי */
+/* ------------------- כלל כללי ------------------- */
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   background: linear-gradient(160deg, #1b0d2f, #4b1c6b);
   color: white;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* HEADER */
+/* ------------------- HEADER ------------------- */
 header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  padding: 12px 24px;
+  padding: 15px 25px;
   backdrop-filter: blur(8px);
   background: rgba(0,0,0,0.5);
+  z-index: 2;
+  position: relative;
 }
 
 .logo {
@@ -29,16 +32,63 @@ header {
   text-shadow: 0 0 10px #f1c40f;
 }
 
-/* GRID */
+/* 🎁 כפתור פרימיום */
+.buttonWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.premiumGift {
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(135deg, gold, orange);
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: bold;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 0 0 15px rgba(255,215,0,0.6);
+  position: relative;
+}
+
+/* פס לבן באמצע הכפתור */
+.premiumGift::before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background: white;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+/* hover */
+.premiumGift:hover {
+  padding: 12px 30px;
+  transform: scale(1.1);
+}
+
+.premiumGift:hover::after {
+  content: "✨ 30 יום חינם";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+}
+
+/* ------------------- GRID סרטים ------------------- */
 .grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
-/* CARD */
 .card {
   width: 180px;
   height: 270px;
@@ -49,6 +99,7 @@ header {
   justify-content: space-between;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -60,16 +111,20 @@ header {
   height: 180px;
   border-radius: 12px;
   object-fit: cover;
+  transition: transform 0.3s;
 }
 
-/* TITLE */
+.card:hover img {
+  transform: scale(1.1);
+}
+
 .card h3 {
   font-size: 1em;
   text-align: center;
   padding: 5px;
 }
 
-/* MODAL */
+/* ------------------- MODAL ------------------- */
 .modal {
   position: fixed;
   inset: 0;
@@ -88,7 +143,7 @@ iframe {
   border-radius: 10px;
 }
 
-/* BUTTON */
+/* כפתור סגירה */
 .closeBtn {
   position: absolute;
   top: 15px;
@@ -100,114 +155,32 @@ iframe {
   cursor: pointer;
 }
 
-/* ANIMATIONS */
+/* ------------------- אנימציות ------------------- */
 @keyframes popGlow {
   from { box-shadow: 0 0 5px #f1c40f; }
   to { box-shadow: 0 0 20px #ffdd00; }
 }
 
-/* עננים רקע pop */
-body::before {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: url('assets/clouds.png') repeat-x;
-  top: -50%;
-  left: -50%;
-  animation: moveClouds 120s linear infinite;
-  opacity: 0.15;
-  pointer-events: none;
-}
-
-@keyframes moveClouds {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 25px;
-}
-
-/* 🎁 כפתור מתנה */
-.premiumGift {
-  text-decoration: none;
-  color: white;
-  background: linear-gradient(135deg, gold, orange);
-  padding: 12px 18px;
-  border-radius: 14px;
-  font-weight: bold;
-  position: relative;
-  overflow: hidden;
-  transition: 0.4s;
-  box-shadow: 0 0 15px rgba(255,215,0,0.6);
-}
-
-/* סרט */
-.premiumGift::before {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 100%;
-  background: white;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-}
-
-/* hover */
-.premiumGift:hover {
-  padding: 12px 30px;
-  transform: scale(1.1);
-}
-
-/* טקסט נוסף */
-.premiumGift:hover::after {
-  content: "✨ 30 יום חינם";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  font-size: 12px;
-}
-/* ☁️ עננים כלליים ברקע */
+/* ------------------- עננים ברקע ------------------- */
 .cloud {
   position: absolute;
   background: rgba(255,255,255,0.15);
   border-radius: 50%;
   filter: blur(25px);
   animation: moveClouds linear infinite;
+  z-index: 0;
 }
 
-.cloud1 {
-  width: 400px; height: 200px;
-  top: 10%; left: -400px;
-  animation-duration: 120s;
-}
-
-.cloud2 {
-  width: 250px; height: 120px;
-  top: 50%; left: -300px;
-  animation-duration: 90s;
-}
-
-.cloud3 {
-  width: 350px; height: 180px;
-  top: 30%; left: -350px;
-  animation-duration: 150s;
-}
+.cloud1 { width: 400px; height: 200px; top: 10%; left: -400px; animation-duration: 120s; }
+.cloud2 { width: 250px; height: 120px; top: 50%; left: -300px; animation-duration: 90s; }
+.cloud3 { width: 350px; height: 180px; top: 30%; left: -350px; animation-duration: 150s; }
 
 @keyframes moveClouds {
   0% { transform: translateX(0); }
   100% { transform: translateX(200vw); }
 }
-.buttonWrap {
-  position: relative;
-}
 
+/* ------------------- פופים מתחת לכפתור ------------------- */
 .particles {
   position: absolute;
   bottom: -10px;

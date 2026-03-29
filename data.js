@@ -1,4 +1,3 @@
-
 const movies = [
   { title: "שרק 1 (Shrek 1)", id: "1Au4tpzq7rE8SkFKAlNfSOFF5L5zqzkBX", image: "assets/shrek1.png" },
   { title: "שרק 2 (Shrek 2)", id: "1CgRPoW8t9tWSZBKGcadxKaYAf013EXWW", image: "assets/shrek2.png" },

@@ -135,6 +135,87 @@ function closePrivacy() {
 // קריאה לבדיקה בתחילת טעינת הדף
 showPrivacyIfNeeded();
 </script>
+<!-- 💎 מודאל פרימיום מתקדם -->
+<div id="premium-modal" class="premium-modal hidden">
+  <div class="premium-modal-content">
+    <h2>ההצטרפות שלך לפרימיום!</h2>
+    <p>ברוך הבא לעולם של אולטרה פרימיום! כל התוכן בהישג ידך. הירשם עכשיו וקבל 30 יום בחינם כחלק מתוכנית נסיון זמנית השירות בקרוב בתשלום!</p>
+    
+    <form id="premium-signup-form">
+      <label for="username">שם משתמש</label>
+      <input type="text" id="username" name="username" placeholder="הזן שם משתמש" required>
 
+      <label for="email">אימייל</label>
+      <input type="email" id="email" name="email" placeholder="הזן אימייל" required>
+
+      <label for="password">סיסמה</label>
+      <input type="password" id="password" name="password" placeholder="הזן סיסמה" required>
+
+      <button type="submit">הצטרף לפרימיום</button>
+    </form>
+
+    <button class="close-btn" onclick="closeModal()">✖ סגור</button>
+  </div>
+</div>
+  <script>
+// 🎫 סגירת מודאל פרימיום
+function closePremium() {
+  document.getElementById("premium-modal").classList.add("hidden");
+}
+
+// 🚀 הרשמה פרימיום
+function registerPremium(event) {
+  event.preventDefault();
+
+  const u = document.getElementById("username").value.trim();
+  const e = document.getElementById("email").value.trim();
+  const p = document.getElementById("password").value.trim();
+
+  if (!u || !e || !p) {
+    alert("❗ יש למלא שם משתמש, אימייל וסיסמה כדי להצטרף לפרימיום");
+    return;
+  }
+
+  // שמירה ב‑localStorage
+  localStorage.setItem("premiumUser", u);
+  localStorage.setItem("premiumEmail", e);
+  localStorage.setItem("premiumPass", p);
+
+  alert("🎉 ברוך הבא לפרימיום, " + u + "!");
+  closePremium();
+}
+
+// 📅 אופציה ל‑30 יום
+function setPremiumExpiry() {
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 30);
+  localStorage.setItem("premiumExpiry", expiryDate.toString());
+}
+
+// 💎 בדיקת סטטוס פרימיום
+function isPremiumActive() {
+  const user = localStorage.getItem("premiumUser");
+  const expiry = localStorage.getItem("premiumExpiry");
+
+  if (!user || !expiry) return false;
+  const exp = new Date(expiry);
+
+  return exp > new Date();
+}
+
+// 🔌 חיבור אירוע טופס
+const premiumForm = document.getElementById("premium-signup-form");
+if (premiumForm) {
+  premiumForm.addEventListener("submit", (e) => {
+    registerPremium(e);
+    setPremiumExpiry(); // שמור תוקף 30 יום
+  });
+}
+
+// 🚀 הצגת המודל בתחילת טעינת הדף
+document.addEventListener("DOMContentLoaded", () => {
+  showPremiumModal();
+});
+</script>
 </body>
 </html>

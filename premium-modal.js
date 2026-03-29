@@ -56,7 +56,7 @@ function isPremiumActive() {
 // הצגת המודל בתחילת טעינת הדף
 window.addEventListener("load", () => {
   if (!isPremiumActive()) {
-    openPremium();
+    openPremium(); // מציג את המודל אם המשתמש לא פרימיום
   }
 });
 
